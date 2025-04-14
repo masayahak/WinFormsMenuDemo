@@ -1,6 +1,5 @@
 using System.Configuration;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using WinFormsMenuDemo.Presenters;
 using WinFormsMenuDemo.Repositories;
 using WinFormsMenuDemo.Views;

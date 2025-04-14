@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-
-namespace WinFormsMenuDemo.Controls
+﻿namespace WinFormsMenuDemo.Controls
 {
     public partial class SelectableGridView : UserControl
     {
