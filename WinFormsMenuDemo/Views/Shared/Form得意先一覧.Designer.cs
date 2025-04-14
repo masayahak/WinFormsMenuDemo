@@ -30,28 +30,28 @@ namespace WinFormsMenuDemo.Forms.Shared
         /// </summary>
         private void InitializeComponent()
         {
-            panelTop = new Panel();
+            panelSearch = new Panel();
             button検索 = new Button();
             textBox検索 = new TextBox();
             panelBottom = new Panel();
             buttonキャンセル = new Button();
             button決定 = new Button();
             dataGridView = new SelectableGridView();
-            panelTop.SuspendLayout();
+            panelSearch.SuspendLayout();
             panelBottom.SuspendLayout();
             SuspendLayout();
             // 
-            // panelTop
+            // panelSearch
             // 
-            panelTop.BackColor = Color.WhiteSmoke;
-            panelTop.Controls.Add(button検索);
-            panelTop.Controls.Add(textBox検索);
-            panelTop.Dock = DockStyle.Top;
-            panelTop.Location = new Point(0, 0);
-            panelTop.Margin = new Padding(4);
-            panelTop.Name = "panelTop";
-            panelTop.Size = new Size(784, 50);
-            panelTop.TabIndex = 3;
+            panelSearch.BackColor = Color.WhiteSmoke;
+            panelSearch.Controls.Add(button検索);
+            panelSearch.Controls.Add(textBox検索);
+            panelSearch.Dock = DockStyle.Top;
+            panelSearch.Location = new Point(0, 0);
+            panelSearch.Margin = new Padding(4);
+            panelSearch.Name = "panelSearch";
+            panelSearch.Size = new Size(784, 50);
+            panelSearch.TabIndex = 3;
             // 
             // button検索
             // 
@@ -122,6 +122,8 @@ namespace WinFormsMenuDemo.Forms.Shared
             // 
             // dataGridView
             // 
+            dataGridView.BarGraphColumnName = null;
+            dataGridView.DataSource = null;
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.Location = new Point(0, 50);
             dataGridView.Name = "dataGridView";
@@ -136,22 +138,22 @@ namespace WinFormsMenuDemo.Forms.Shared
             ControlBox = false;
             Controls.Add(dataGridView);
             Controls.Add(panelBottom);
-            Controls.Add(panelTop);
+            Controls.Add(panelSearch);
             Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
             Margin = new Padding(4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form得意先一覧";
             Text = "得意先一覧";
-            panelTop.ResumeLayout(false);
-            panelTop.PerformLayout();
+            panelSearch.ResumeLayout(false);
+            panelSearch.PerformLayout();
             panelBottom.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panelTop;
+        private Panel panelSearch;
         private Button button検索;
         private TextBox textBox検索;
         private Panel panelBottom;

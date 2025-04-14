@@ -1,10 +1,8 @@
 ﻿using System.Configuration;
 using WinFormsMenuDemo.Controls;
 using WinFormsMenuDemo.Forms.Shared;
-using WinFormsMenuDemo.Models;
 using WinFormsMenuDemo.Presenters.Shared;
 using WinFormsMenuDemo.Repositories.Shared;
-using Rectangle = System.Drawing.Rectangle;
 
 namespace WinFormsMenuDemo.Views
 {
@@ -19,113 +17,13 @@ namespace WinFormsMenuDemo.Views
             InitializeComponent();
 
             this.tabControl.TabPages.Remove(tabPage受注登録);
-            dataGridView.CellPainting += dataGridView_CellPainting;
 
             AssociateAndRaiseViewEvents();
         }
 
-        // イベント
-        public event EventHandler? SearchEvent;
-        public event EventHandler? AddNewEvent;
-        public event EventHandler? EditEvent;
-        public event EventHandler? DeleteEvent;
-        public event EventHandler? SaveEvent;
-        public event EventHandler? CancelEvent;
-
-        public void ApplyTheme()
-        {
-            // グリッド色を再適用
-            dataGridView.ApplyTheme();
-        }
-        private void AssociateAndRaiseViewEvents()
-        {
-            // 検索
-            this.button検索.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
-            this.textBox検索.KeyDown += (s, e) =>
-                        {
-                            if (e.KeyCode == Keys.Enter)
-                            {
-                                SearchEvent?.Invoke(this, EventArgs.Empty);
-                                e.SuppressKeyPress = true; // Enterキーの音を消す
-                            }
-                        };
-
-            // 登録系 -----------------------------------------
-            // 追加
-            this.button追加.Click += delegate
-            {
-                AddNewEvent?.Invoke(this, EventArgs.Empty);
-                this.tabControl.TabPages.Add(tabPage受注登録);
-                this.button削除.Visible = false;
-                this.tabControl.TabPages.Remove(tabPage受注一覧);
-            };
-
-            // 修正
-            this.dataGridView.CellDoubleClick += (s, e) =>
-            {
-                EditEvent?.Invoke(this, EventArgs.Empty);
-                this.tabControl.TabPages.Add(tabPage受注登録);
-                this.button削除.Visible = true;
-                this.tabControl.TabPages.Remove(tabPage受注一覧);
-            };
-
-            this.button保存.Click += delegate
-            {
-                SaveEvent?.Invoke(this, EventArgs.Empty);
-                if (IsSuccessful)
-                {
-                    this.tabControl.TabPages.Add(tabPage受注一覧);
-                    this.tabControl.TabPages.Remove(tabPage受注登録);
-                }
-                var toast = new ToastPanel();
-                toast.ShowToast(Message, this);
-            };
-            this.buttonキャンセル.Click += delegate
-            {
-                CancelEvent?.Invoke(this, EventArgs.Empty);
-                this.tabControl.TabPages.Add(tabPage受注一覧);
-                this.tabControl.TabPages.Remove(tabPage受注登録);
-            };
-            this.button削除.Click += delegate
-            {
-                var result = MessageBox.Show("削除します。", "警告",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
-                {
-                    DeleteEvent?.Invoke(this, EventArgs.Empty);
-                    var toast = new ToastPanel();
-                    toast.ShowToast(Message, this);
-                    this.tabControl.TabPages.Add(tabPage受注一覧);
-                    this.tabControl.TabPages.Remove(tabPage受注登録);
-                }
-            };
-
-            // 得意先検索
-            this.button得意先検索.Click += delegate
-            {
-                using (var form = new Form得意先一覧())
-                {
-                    string sqlConnectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
-                    var repo = new 得意先Repository(sqlConnectionString);
-                    var presenter = new 得意先一覧Presenter(form, repo);
-
-                    form.StartPosition = FormStartPosition.CenterParent;
-                    if (form.ShowDialog() == DialogResult.OK)
-                    {
-                        得意先Id = form.得意先Id;
-                        得意先名 = form.得意先名;
-                    }
-                }
-            };
-
-        }
-
-        private void Button得意先検索_Click(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
+        // -------------------------------------------------
         // プロパティ
+        // -------------------------------------------------
         public string 受注Id
         {
             get => textBox受注Id.Text;
@@ -199,10 +97,136 @@ namespace WinFormsMenuDemo.Views
             set { message = value; }
         }
 
-        // メソッド
+        // -------------------------------------------------
+        // データ捜査イベント（Presenterで実装）
+        // -------------------------------------------------
+        public event EventHandler? SearchEvent;
+        public event EventHandler? AddNewEvent;
+        public event EventHandler? EditEvent;
+        public event EventHandler? DeleteEvent;
+        public event EventHandler? SaveEvent;
+        public event EventHandler? CancelEvent;
+
+        private void AssociateAndRaiseViewEvents()
+        {
+            // 検索
+            this.button検索.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
+            this.textBox検索.KeyDown += (s, e) =>
+                        {
+                            if (e.KeyCode == Keys.Enter)
+                            {
+                                SearchEvent?.Invoke(this, EventArgs.Empty);
+                                e.SuppressKeyPress = true; // Enterキーの音を消す
+                            }
+                        };
+
+            // 登録系 -----------------------------------------
+            // 追加
+            this.button追加.Click += delegate
+            {
+                AddNewEvent?.Invoke(this, EventArgs.Empty);
+                this.tabControl.TabPages.Add(tabPage受注登録);
+                this.button削除.Visible = false;
+                this.tabControl.TabPages.Remove(tabPage受注一覧);
+            };
+
+            // 修正
+            this.dataGridView.CellDoubleClick += (s, e) =>
+            {
+                EditEvent?.Invoke(this, EventArgs.Empty);
+                this.tabControl.TabPages.Add(tabPage受注登録);
+                this.button削除.Visible = true;
+                this.tabControl.TabPages.Remove(tabPage受注一覧);
+            };
+
+            this.button保存.Click += delegate
+            {
+                SaveEvent?.Invoke(this, EventArgs.Empty);
+                if (IsSuccessful)
+                {
+                    this.tabControl.TabPages.Add(tabPage受注一覧);
+                    this.tabControl.TabPages.Remove(tabPage受注登録);
+                }
+                ShowMessageToUser(message);
+            };
+            this.buttonキャンセル.Click += delegate
+            {
+                CancelEvent?.Invoke(this, EventArgs.Empty);
+                this.tabControl.TabPages.Add(tabPage受注一覧);
+                this.tabControl.TabPages.Remove(tabPage受注登録);
+            };
+            this.button削除.Click += delegate
+            {
+                var result = MessageBox.Show("削除します。", "警告",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    DeleteEvent?.Invoke(this, EventArgs.Empty);
+                    ShowMessageToUser(message);
+                    this.tabControl.TabPages.Add(tabPage受注一覧);
+                    this.tabControl.TabPages.Remove(tabPage受注登録);
+                }
+            };
+
+            // 得意先検索
+            this.button得意先検索.Click += delegate
+            {
+                using (var form = new Form得意先一覧())
+                {
+                    string sqlConnectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
+                    var repo = new 得意先Repository(sqlConnectionString);
+                    var presenter = new 得意先一覧Presenter(form, repo);
+
+                    form.StartPosition = FormStartPosition.CenterParent;
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        得意先Id = form.得意先Id;
+                        得意先名 = form.得意先名;
+                    }
+                }
+            };
+
+        }
+
+        // -------------------------------------------------
+        // 画面描画
+        // -------------------------------------------------
+        // テーマ適用
+        public void ApplyTheme()
+        {
+            // グリッド色を再適用
+            dataGridView.ApplyTheme();
+        }
+
+        // メッセージ表示
+        private void ShowMessageToUser(string message)
+        {
+            this.message = message;
+
+            // トースト表示
+            var toast = new ToastPanel();
+            toast.ShowToast(message, this);
+
+            // 親フォームのボトムバーにも表示
+            var parentForm = this.Parent;
+            while (parentForm != null && parentForm is not FormMain)
+            {
+                parentForm = parentForm.Parent;
+            }
+
+            if (parentForm is FormMain main)
+            {
+                main.Message = message;
+            }
+        }
+
+        // -------------------------------------------------
+        // GridViewの設定
+        // -------------------------------------------------
         public void Set受注ListBindingSource(BindingSource 受注list)
         {
             カスタムDataGridView設定();
+            this.dataGridView.BarGraphColumnName = "合計金額";
             this.dataGridView.DataSource = 受注list;
         }
 
@@ -281,41 +305,12 @@ namespace WinFormsMenuDemo.Views
 
         }
 
-        private void dataGridView_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
+        // -------------------------------------------------
+        // メソッド
+        // -------------------------------------------------
+        private void Button得意先検索_Click(object? sender, EventArgs e)
         {
-            if (e.RowIndex >= 0 && dataGridView.Columns[e.ColumnIndex].DataPropertyName == "合計金額")
-            {
-                e.Handled = true;
-                e.PaintBackground(e.CellBounds, true);
-
-                if (e.Value != null && int.TryParse(e.Value.ToString(), out int amount))
-                {
-                    int max = get最大金額();
-                    int barWidth = (int)((amount / (float)max) * (e.CellBounds.Width - 6));
-                    int barX = e.CellBounds.Right - barWidth - 3;
-                    Rectangle bar = new Rectangle(barX, e.CellBounds.Y + 3, barWidth, e.CellBounds.Height - 6);
-
-                    using var b = new SolidBrush(Properties.Settings.Default.GridGraphColor);
-                    e.Graphics!.FillRectangle(b, bar);
-
-                    // ★ 右寄せで金額表示
-                    TextRenderer.DrawText(e.Graphics, amount.ToString("¥#,0"),
-                        e.CellStyle!.Font, e.CellBounds, e.CellStyle.ForeColor,
-                        TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
-                }
-            }
-        }
-
-        private int get最大金額()
-        {
-            int max = 0;
-            if (dataGridView.DataSource is BindingSource bs &&
-                bs.List is IEnumerable<受注Model> list)
-            {
-                max = list.Max(x => x.合計金額);
-            }
-
-            return max;
+            throw new NotImplementedException();
         }
     }
 }

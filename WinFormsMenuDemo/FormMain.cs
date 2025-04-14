@@ -1,5 +1,4 @@
 using System.Configuration;
-using System.Runtime.InteropServices;
 using WinFormsMenuDemo.Presenters;
 using WinFormsMenuDemo.Repositories;
 using WinFormsMenuDemo.Views;
@@ -9,78 +8,45 @@ namespace WinFormsMenuDemo
 {
     public partial class FormMain : Form, Iテーマ適用可能
     {
-        [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        [DllImport("user32.dll")]
-        public static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-
-        private const int WM_NCLBUTTONDOWN = 0xA1;
-        private const int HTCAPTION = 0x2;
-        private const int HTBOTTOMRIGHT = 17;
-
-
         public FormMain()
         {
             InitializeComponent();
+            ApplyTheme();
 
-            panelTop.BackColor = Properties.Settings.Default.TopBarColor;
-            panelMenu.BackColor = Properties.Settings.Default.MenuBackColor;
-            SetDefaultMenuColor();
-
+            // メニューの初期化
             ShowForm("Welcome", typeof(FormWelcome));
         }
 
-
-        #region ================ モダンUI ========================
-        // 終了ボタン
-        private void buttonClose_Click(object sender, EventArgs e)
+        // 子Formからメッセージ受け取り用
+        public string Message
         {
-            Application.Exit();
-        }
-
-        // 画面最小化
-        private void buttonMinScreen_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-
-        // 画面最大化
-        private void buttonFullScreen_Click(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Maximized)
+            get => panelBottom.MessageText;
+            set
             {
-                this.WindowState = FormWindowState.Normal;
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Maximized;
+                panelBottom.MessageText = value;
             }
         }
 
-        // Formドラッグ
-        private void panelTop_MouseDown(object sender, MouseEventArgs e)
+        // ------------------------------------------------
+        // 設定（テーマ）変更時
+        // ------------------------------------------------
+        public void ApplyTheme()
         {
-            if (e.Button == MouseButtons.Left)
+            this.panelTop.BackColor = Properties.Settings.Default.TopBarColor;
+            this.panelMenu.BackColor = Properties.Settings.Default.MenuBackColor;
+
+            // メニュー色の再適用
+            SetDefaultMenuColor();
+
+            // キャッシュ内フォームすべてに通知
+            foreach (var form in _formCache.Values)
             {
-                ReleaseCapture();
-                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+                if (form is Iテーマ適用可能 target)
+                {
+                    target.ApplyTheme();
+                }
             }
         }
-
-        // フォームリサイズ
-        private void pictureBoxResize_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTBOTTOMRIGHT, 0);
-            }
-
-        }
-
-        #endregion ================================================
 
         // ------------------------------------------------
         // 位置記録
@@ -140,70 +106,51 @@ namespace WinFormsMenuDemo
             }
         }
 
-
         private void ShowForm(string key, Type formType)
         {
-
             if (!_formCache.TryGetValue(key, out var form) || form.IsDisposed)
             {
-                if (formType == typeof(Form受注))
-                {
-                    IForm受注View view = new Form受注();
-                    string sqlConnectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
-                    I受注Repository repository = new 受注Repository(sqlConnectionString);
-                    new 受注Presenter(view, repository);
-
-                    form = (Form)view;
-                }
-                else if (formType == typeof(Form得意先))
-                {
-                    IForm得意先View view = new Form得意先();
-                    string sqlConnectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
-                    I得意先Repository repository = new 得意先Repository(sqlConnectionString);
-                    new 得意先Presenter(view, repository);
-
-                    form = (Form)view;
-                }
-                else if (formType == typeof(Form設定))
-                {
-                    IForm設定View view = new Form設定();
-                    view.ThemeChanged += (_, _) =>
-                    {
-                        ApplyTheme(); // 現在の Properties.Settings から反映
-                    };
-                    form = (Form)view;
-                }
-                else
-                {
-                    var requested = Activator.CreateInstance(formType);
-                    if (requested is not Form)
-                        throw new InvalidOperationException($"{formType.Name} のインスタンスを生成できません。");
-
-                    form = (Form)requested;
-                }
-
+                form = CreateFormInstance(formType);
                 _formCache[key] = form;
             }
             LoadFormToPanel(form);
         }
 
-        // 設定（テーマ）変更時
-        public void ApplyTheme()
+        private Form CreateFormInstance(Type formType)
         {
-            this.panelTop.BackColor = Properties.Settings.Default.TopBarColor;
-            this.panelMenu.BackColor = Properties.Settings.Default.MenuBackColor;
-
-            // メニュー色の再適用
-            SetDefaultMenuColor();
-
-            // キャッシュ内フォームすべてに通知
-            foreach (var form in _formCache.Values)
+            if (formType == typeof(Form受注))
             {
-                if (form is Iテーマ適用可能 target)
-                {
-                    target.ApplyTheme();
-                }
+                IForm受注View view = new Form受注();
+                string sqlConnectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
+                I受注Repository repository = new 受注Repository(sqlConnectionString);
+                new 受注Presenter(view, repository);
+                return (Form)view;
             }
+
+            if (formType == typeof(Form得意先))
+            {
+                IForm得意先View view = new Form得意先();
+                string sqlConnectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
+                I得意先Repository repository = new 得意先Repository(sqlConnectionString);
+                new 得意先Presenter(view, repository);
+                return (Form)view;
+            }
+
+            if (formType == typeof(Form設定))
+            {
+                IForm設定View view = new Form設定();
+                view.ThemeChanged += (_, _) =>
+                {
+                    ApplyTheme();
+                };
+                return (Form)view;
+            }
+
+            var requested = Activator.CreateInstance(formType);
+            if (requested is not Form f)
+                throw new InvalidOperationException($"{formType.Name} のインスタンスを生成できません。");
+
+            return f;
         }
 
         private void button受注_Click(object sender, EventArgs e)

@@ -41,21 +41,14 @@
             label3 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
-            panelTop = new Panel();
-            label1 = new Label();
-            buttonMinScreen = new Button();
-            buttonFullScreen = new Button();
-            buttonClose = new Button();
             panelMain = new Panel();
-            panelBottom = new Panel();
-            pictureBoxResize = new PictureBox();
+            panelBottom = new WinFormsMenuDemo.Controls.BottomBarControl();
+            panelTop = new WinFormsMenuDemo.Controls.TopBarControl();
             panelMenu.SuspendLayout();
             panelマスター.SuspendLayout();
             panelロゴ.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panelTop.SuspendLayout();
-            panelBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxResize).BeginInit();
+            panelMain.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
@@ -267,124 +260,39 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // panelTop
-            // 
-            panelTop.BackColor = Color.DarkOrange;
-            panelTop.Controls.Add(label1);
-            panelTop.Controls.Add(buttonMinScreen);
-            panelTop.Controls.Add(buttonFullScreen);
-            panelTop.Controls.Add(buttonClose);
-            panelTop.Dock = DockStyle.Top;
-            panelTop.Location = new Point(0, 0);
-            panelTop.Margin = new Padding(4);
-            panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1400, 30);
-            panelTop.TabIndex = 1;
-            panelTop.MouseDown += panelTop_MouseDown;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(9, 4);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(90, 21);
-            label1.TabIndex = 5;
-            label1.Text = "モダンUI デモ";
-            // 
-            // buttonMinScreen
-            // 
-            buttonMinScreen.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonMinScreen.BackColor = Color.Transparent;
-            buttonMinScreen.BackgroundImageLayout = ImageLayout.Zoom;
-            buttonMinScreen.FlatAppearance.BorderSize = 0;
-            buttonMinScreen.FlatStyle = FlatStyle.Flat;
-            buttonMinScreen.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 128);
-            buttonMinScreen.ForeColor = Color.White;
-            buttonMinScreen.Image = Properties.Resources.dash;
-            buttonMinScreen.ImageAlign = ContentAlignment.BottomCenter;
-            buttonMinScreen.Location = new Point(1283, 0);
-            buttonMinScreen.Margin = new Padding(0);
-            buttonMinScreen.Name = "buttonMinScreen";
-            buttonMinScreen.Size = new Size(30, 30);
-            buttonMinScreen.TabIndex = 4;
-            buttonMinScreen.UseVisualStyleBackColor = false;
-            buttonMinScreen.Click += buttonMinScreen_Click;
-            // 
-            // buttonFullScreen
-            // 
-            buttonFullScreen.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonFullScreen.BackColor = Color.Transparent;
-            buttonFullScreen.BackgroundImageLayout = ImageLayout.Zoom;
-            buttonFullScreen.FlatAppearance.BorderSize = 0;
-            buttonFullScreen.FlatStyle = FlatStyle.Flat;
-            buttonFullScreen.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 128);
-            buttonFullScreen.ForeColor = Color.White;
-            buttonFullScreen.Image = Properties.Resources.square;
-            buttonFullScreen.Location = new Point(1324, 0);
-            buttonFullScreen.Margin = new Padding(0);
-            buttonFullScreen.Name = "buttonFullScreen";
-            buttonFullScreen.Size = new Size(30, 30);
-            buttonFullScreen.TabIndex = 4;
-            buttonFullScreen.UseVisualStyleBackColor = false;
-            buttonFullScreen.Click += buttonFullScreen_Click;
-            // 
-            // buttonClose
-            // 
-            buttonClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonClose.BackColor = Color.Transparent;
-            buttonClose.BackgroundImageLayout = ImageLayout.Zoom;
-            buttonClose.FlatAppearance.BorderSize = 0;
-            buttonClose.FlatStyle = FlatStyle.Flat;
-            buttonClose.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 128);
-            buttonClose.ForeColor = Color.White;
-            buttonClose.Image = Properties.Resources.x;
-            buttonClose.Location = new Point(1361, 0);
-            buttonClose.Margin = new Padding(0);
-            buttonClose.Name = "buttonClose";
-            buttonClose.Size = new Size(30, 30);
-            buttonClose.TabIndex = 4;
-            buttonClose.UseVisualStyleBackColor = false;
-            buttonClose.Click += buttonClose_Click;
-            // 
             // panelMain
             // 
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new Point(200, 30);
             panelMain.Margin = new Padding(4);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1200, 745);
+            panelMain.Size = new Size(1200, 770);
             panelMain.TabIndex = 7;
             // 
             // panelBottom
             // 
             panelBottom.BackColor = Color.Gray;
-            panelBottom.Controls.Add(pictureBoxResize);
             panelBottom.Dock = DockStyle.Bottom;
-            panelBottom.Location = new Point(200, 775);
-            panelBottom.Margin = new Padding(4);
+            panelBottom.Location = new Point(0, 745);
+            panelBottom.MessageText = "";
             panelBottom.Name = "panelBottom";
             panelBottom.Size = new Size(1200, 25);
-            panelBottom.TabIndex = 8;
+            panelBottom.TabIndex = 0;
             // 
-            // pictureBoxResize
+            // panelTop
             // 
-            pictureBoxResize.BackColor = Color.Gray;
-            pictureBoxResize.Cursor = Cursors.SizeNWSE;
-            pictureBoxResize.Dock = DockStyle.Right;
-            pictureBoxResize.Image = Properties.Resources.resize;
-            pictureBoxResize.InitialImage = null;
-            pictureBoxResize.Location = new Point(1174, 0);
-            pictureBoxResize.Margin = new Padding(4);
-            pictureBoxResize.Name = "pictureBoxResize";
-            pictureBoxResize.Size = new Size(26, 25);
-            pictureBoxResize.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxResize.TabIndex = 9;
-            pictureBoxResize.TabStop = false;
-            pictureBoxResize.MouseDown += pictureBoxResize_MouseDown;
+            panelTop.BackColor = Color.DarkOrange;
+            panelTop.BarBackColor = Color.DarkOrange;
+            panelTop.Dock = DockStyle.Top;
+            panelTop.Font = new Font("Yu Gothic UI", 12F);
+            panelTop.Location = new Point(0, 0);
+            panelTop.Name = "panelTop";
+            panelTop.ShowCloseButton = true;
+            panelTop.ShowMaximizeButton = true;
+            panelTop.ShowMinimizeButton = true;
+            panelTop.Size = new Size(1400, 30);
+            panelTop.TabIndex = 0;
+            panelTop.Title = "モダンUIデモ";
             // 
             // FormMain
             // 
@@ -409,25 +317,15 @@
             panelロゴ.ResumeLayout(false);
             panelロゴ.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panelTop.ResumeLayout(false);
-            panelTop.PerformLayout();
-            panelBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBoxResize).EndInit();
+            panelMain.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panelMenu;
-        private Panel panelTop;
         private Button button受注;
-        private Button buttonMinScreen;
-        private Button buttonFullScreen;
-        private Button buttonClose;
-        private Label label1;
         private Panel panelMain;
-        private Panel panelBottom;
-        private PictureBox pictureBoxResize;
         private Panel panelマスター;
         private Button button得意先;
         private Button buttonマスター;
@@ -438,5 +336,7 @@
         private Label label3;
         private Label label2;
         private Button button製品;
+        private Controls.TopBarControl panelTop;
+        private Controls.BottomBarControl panelBottom;
     }
 }
