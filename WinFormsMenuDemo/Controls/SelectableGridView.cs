@@ -19,9 +19,9 @@ namespace WinFormsMenuDemo.Controls
             dataGridView.CellPainting += (s, e) => CellPainting?.Invoke(s, e);
         }
 
-        public object? DataSource
+        public BindingSource? DataSource
         {
-            get => dataGridView.DataSource;
+            get => dataGridView.DataSource as BindingSource;
             set => dataGridView.DataSource = value;
         }
 
