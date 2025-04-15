@@ -121,7 +121,7 @@ namespace WinFormsMenuDemo.Views
                 IForm受注View view = new Form受注();
                 string sqlConnectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
                 I受注Repository repository = new 受注Repository(sqlConnectionString);
-                _ = new 受注Presenter(view, repository);
+                new 受注Presenter(view, repository);
                 return (Form)view;
             }
 
@@ -130,7 +130,16 @@ namespace WinFormsMenuDemo.Views
                 IForm得意先View view = new Form得意先();
                 string sqlConnectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
                 I得意先Repository repository = new 得意先Repository(sqlConnectionString);
-                _ = new 得意先Presenter(view, repository);
+                new 得意先Presenter(view, repository);
+                return (Form)view;
+            }
+
+            if (formType == typeof(Form障害ログ))
+            {
+                IForm障害ログView view = new Form障害ログ();
+                string sqlConnectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
+                I障害ログRepository repository = new 障害ログRepository(sqlConnectionString);
+                new 障害ログPresenter(view, repository);
                 return (Form)view;
             }
 
@@ -195,9 +204,18 @@ namespace WinFormsMenuDemo.Views
             ShowForm("設定", typeof(Form設定));
         }
 
+        private void Btn障害ログ_Click(object sender, EventArgs e)
+        {
+            SetDefaultMenuColor();
+            Btn障害ログ.BackColor = Properties.Settings.Default.TopBarColor;
+
+            ShowForm("障害ログ", typeof(Form障害ログ));
+        }
+
         private void Btnログアウト_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
     }
 }

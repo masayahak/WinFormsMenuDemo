@@ -282,6 +282,7 @@ dotnet_diagnostic.IDE0017.severity = none
 dotnet_diagnostic.IDE0028.severity = none
 dotnet_diagnostic.IDE0063.severity = none
 dotnet_diagnostic.IDE0150.severity = none
+dotnet_diagnostic.CA1806.severity = none
 dotnet_diagnostic.CA1822.severity = none
 
 [*.{cs,vb}]

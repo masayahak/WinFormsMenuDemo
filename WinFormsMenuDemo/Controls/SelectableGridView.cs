@@ -13,6 +13,7 @@ namespace WinFormsMenuDemo.Controls
             InitializeComponent();
             InitializeGrid();
             DataGridView.ReadOnly = true;
+            DataGridView.AllowUserToAddRows = false;
 
             // 内部イベントを外部に転送
             DataGridView.CellDoubleClick += (s, e) => CellDoubleClick?.Invoke(s, e);

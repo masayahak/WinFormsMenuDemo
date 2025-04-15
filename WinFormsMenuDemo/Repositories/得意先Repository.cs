@@ -141,7 +141,6 @@ namespace WinFormsMenuDemo.Repositories
                 connection.Open();
                 command.Connection = connection;
 
-
                 command.CommandText = @"select * from T得意先 
                                         where 得意先Id=@id or 得意先名 like @name+'%'
                                         order by 得意先Id;";
