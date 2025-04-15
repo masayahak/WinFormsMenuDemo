@@ -8,6 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <NoWarn>$(NoWarn);WFO1000</NoWarn>
     <RootNamespace>WinFormsMenuDemo</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	<EnableLibraryImportGenerator>true</EnableLibraryImportGenerator>
   </PropertyGroup>
 
   <ItemGroup>
@@ -52,6 +54,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\Dev\＠WinForm\WinFormsMenuDemo\WinFormsMenuDemo\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\Dev\＠WinForm\WinFormsMenuDemo\WinFormsMenuDemo\.editorconfig" />
   </ItemGroup>
 
 </Project>

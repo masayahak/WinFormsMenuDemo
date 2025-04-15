@@ -4,8 +4,8 @@ namespace WinFormsMenuDemo.Views
 {
     public partial class Form設定 : Form, IForm設定View
     {
-        private bool isSuccessful;
-        private string message = string.Empty;
+        private bool _isSuccessful;
+        private string _message = string.Empty;
 
         // コンストラクタ
         public Form設定()
@@ -95,69 +95,69 @@ namespace WinFormsMenuDemo.Views
         // プロパティ
         public string トップバー色
         {
-            get => textBoxトップバー色.Text;
+            get => TextBoxトップバー色.Text;
             set
             {
-                textBoxトップバー色.Text = value;
-                UpdatePictureBoxPreview(pictureBoxトップバー色, value);
+                TextBoxトップバー色.Text = value;
+                UpdatePictureBoxPreview(PictureBoxトップバー色, value);
             }
         }
         public string メニュー背景色
         {
-            get => textBoxメニュー背景色.Text;
+            get => TextBoxメニュー背景色.Text;
             set
             {
-                textBoxメニュー背景色.Text = value;
-                UpdatePictureBoxPreview(pictureBoxメニュー背景色, value);
+                TextBoxメニュー背景色.Text = value;
+                UpdatePictureBoxPreview(PictureBoxメニュー背景色, value);
             }
         }
         public string グリッド見出し背景色
         {
-            get => textBoxグリッド見出し背景色.Text;
+            get => TextBoxグリッド見出し背景色.Text;
             set
             {
-                textBoxグリッド見出し背景色.Text = value;
-                UpdatePictureBoxPreview(pictureBoxグリッド見出し背景色, value);
+                TextBoxグリッド見出し背景色.Text = value;
+                UpdatePictureBoxPreview(PictureBoxグリッド見出し背景色, value);
             }
         }
         public string グリッド選択行背景色
         {
-            get => textBoxグリッド選択行背景色.Text;
+            get => TextBoxグリッド選択行背景色.Text;
             set
             {
-                textBoxグリッド選択行背景色.Text = value;
-                UpdatePictureBoxPreview(pictureBoxグリッド選択行背景色, value);
+                TextBoxグリッド選択行背景色.Text = value;
+                UpdatePictureBoxPreview(PictureBoxグリッド選択行背景色, value);
             }
         }
         public string グリッド選択行文字色
         {
-            get => textBoxグリッド選択行文字色.Text;
+            get => TextBoxグリッド選択行文字色.Text;
             set
             {
-                textBoxグリッド選択行文字色.Text = value;
-                UpdatePictureBoxPreview(pictureBoxグリッド選択行文字色, value);
+                TextBoxグリッド選択行文字色.Text = value;
+                UpdatePictureBoxPreview(PictureBoxグリッド選択行文字色, value);
             }
         }
         public string グリッドグラフ色
         {
-            get => textBoxグリッドグラフ色.Text;
+            get => TextBoxグリッドグラフ色.Text;
             set
             {
-                textBoxグリッドグラフ色.Text = value;
-                UpdatePictureBoxPreview(pictureBoxグリッドグラフ色, value);
+                TextBoxグリッドグラフ色.Text = value;
+                UpdatePictureBoxPreview(PictureBoxグリッドグラフ色, value);
             }
         }
 
         public bool IsSuccessful
         {
-            get { return isSuccessful; }
-            set { isSuccessful = value; }
+            get { return _isSuccessful; }
+            set { _isSuccessful = value; }
         }
 
         public string Message
         {
-            get { return message; }
-            set { message = value; }
+            get { return _message; }
+            set { _message = value; }
         }
 
         private Color SafeParseColor(string text)
@@ -213,38 +213,38 @@ namespace WinFormsMenuDemo.Views
         }
 
         // ----- 色変更 -------------------------------------------------
-        private void textBoxトップバー色_TextChanged(object sender, EventArgs e)
+        private void TextBoxトップバー色_TextChanged(object sender, EventArgs e)
         {
-            UpdatePictureBoxPreview(pictureBoxトップバー色, トップバー色);
+            UpdatePictureBoxPreview(PictureBoxトップバー色, トップバー色);
         }
 
-        private void textBoxメニュー背景色_TextChanged(object sender, EventArgs e)
+        private void TextBoxメニュー背景色_TextChanged(object sender, EventArgs e)
         {
-            UpdatePictureBoxPreview(pictureBoxメニュー背景色, メニュー背景色);
+            UpdatePictureBoxPreview(PictureBoxメニュー背景色, メニュー背景色);
         }
 
-        private void textBoxグリッド見出し背景色_TextChanged(object sender, EventArgs e)
+        private void TextBoxグリッド見出し背景色_TextChanged(object sender, EventArgs e)
         {
-            UpdatePictureBoxPreview(pictureBoxグリッド見出し背景色, グリッド見出し背景色);
+            UpdatePictureBoxPreview(PictureBoxグリッド見出し背景色, グリッド見出し背景色);
         }
 
-        private void textBoxグリッド選択行背景色_TextChanged(object sender, EventArgs e)
+        private void TextBoxグリッド選択行背景色_TextChanged(object sender, EventArgs e)
         {
-            UpdatePictureBoxPreview(pictureBoxグリッド選択行背景色, グリッド選択行背景色);
+            UpdatePictureBoxPreview(PictureBoxグリッド選択行背景色, グリッド選択行背景色);
         }
 
-        private void textBoxグリッド選択行文字色_TextChanged(object sender, EventArgs e)
+        private void TextBoxグリッド選択行文字色_TextChanged(object sender, EventArgs e)
         {
-            UpdatePictureBoxPreview(pictureBoxグリッド選択行文字色, グリッド選択行文字色);
+            UpdatePictureBoxPreview(PictureBoxグリッド選択行文字色, グリッド選択行文字色);
         }
 
-        private void textBoxグリッドグラフ色_TextChanged(object sender, EventArgs e)
+        private void TextBoxグリッドグラフ色_TextChanged(object sender, EventArgs e)
         {
-            UpdatePictureBoxPreview(pictureBoxグリッドグラフ色, グリッドグラフ色);
+            UpdatePictureBoxPreview(PictureBoxグリッドグラフ色, グリッドグラフ色);
         }
 
         // ----- 色選択ダイアログ -------------------------------------------------
-        private void pictureBoxトップバー色_Click(object sender, EventArgs e)
+        private void PictureBoxトップバー色_Click(object sender, EventArgs e)
         {
             using var dialog = new ColorDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -253,7 +253,7 @@ namespace WinFormsMenuDemo.Views
             }
         }
 
-        private void pictureBoxメニュー背景色_Click(object sender, EventArgs e)
+        private void PictureBoxメニュー背景色_Click(object sender, EventArgs e)
         {
             using var dialog = new ColorDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -262,7 +262,7 @@ namespace WinFormsMenuDemo.Views
             }
         }
 
-        private void pictureBoxグリッド見出し背景色_Click(object sender, EventArgs e)
+        private void PictureBoxグリッド見出し背景色_Click(object sender, EventArgs e)
         {
             using var dialog = new ColorDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -271,7 +271,7 @@ namespace WinFormsMenuDemo.Views
             }
         }
 
-        private void pictureBoxグリッド選択行背景色_Click(object sender, EventArgs e)
+        private void PictureBoxグリッド選択行背景色_Click(object sender, EventArgs e)
         {
             using var dialog = new ColorDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -280,7 +280,7 @@ namespace WinFormsMenuDemo.Views
             }
         }
 
-        private void pictureBoxグリッド選択行文字色_Click(object sender, EventArgs e)
+        private void PictureBoxグリッド選択行文字色_Click(object sender, EventArgs e)
         {
             using var dialog = new ColorDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -289,7 +289,7 @@ namespace WinFormsMenuDemo.Views
             }
         }
 
-        private void pictureBoxグリッドグラフ色_Click(object sender, EventArgs e)
+        private void PictureBoxグリッドグラフ色_Click(object sender, EventArgs e)
         {
             using var dialog = new ColorDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -299,24 +299,24 @@ namespace WinFormsMenuDemo.Views
         }
 
         // ----- 全て初期値 -------------------------------------------------
-        private void button全て初期値_Click(object sender, EventArgs e)
+        private void Btn全て初期値_Click(object sender, EventArgs e)
         {
-            トップバー色 = label初期値トップバー色.Text;
-            メニュー背景色 = label初期値メニュー背景色.Text;
-            グリッド見出し背景色 = label初期値グリッド見出し背景色.Text;
-            グリッド選択行背景色 = label初期値グリッド選択行背景色.Text;
-            グリッド選択行文字色 = label初期値グリッド選択行文字色.Text;
-            グリッドグラフ色 = label初期値グリッドグラフ色.Text;
+            トップバー色 = Label初期値トップバー色.Text;
+            メニュー背景色 = Label初期値メニュー背景色.Text;
+            グリッド見出し背景色 = Label初期値グリッド見出し背景色.Text;
+            グリッド選択行背景色 = Label初期値グリッド選択行背景色.Text;
+            グリッド選択行文字色 = Label初期値グリッド選択行文字色.Text;
+            グリッドグラフ色 = Label初期値グリッドグラフ色.Text;
         }
 
-        private void button保存_Click(object sender, EventArgs e)
+        private void Btn保存_Click(object sender, EventArgs e)
         {
             SaveSetting();
             var toast = new ToastPanel();
             toast.ShowToast(Message, this);
         }
 
-        private void buttonキャンセル_Click(object sender, EventArgs e)
+        private void Btnキャンセル_Click(object sender, EventArgs e)
         {
             Cancel();
         }

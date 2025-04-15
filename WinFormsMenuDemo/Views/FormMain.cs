@@ -1,10 +1,9 @@
 using System.Configuration;
 using WinFormsMenuDemo.Presenters;
 using WinFormsMenuDemo.Repositories;
-using WinFormsMenuDemo.Views;
 
 
-namespace WinFormsMenuDemo
+namespace WinFormsMenuDemo.Views
 {
     public partial class FormMain : Form, Iテーマ適用可能
     {
@@ -20,10 +19,10 @@ namespace WinFormsMenuDemo
         // 子Formからメッセージ受け取り用
         public string Message
         {
-            get => panelBottom.MessageText;
+            get => PanelBottom.MessageText;
             set
             {
-                panelBottom.MessageText = value;
+                PanelBottom.MessageText = value;
             }
         }
 
@@ -32,8 +31,8 @@ namespace WinFormsMenuDemo
         // ------------------------------------------------
         public void ApplyTheme()
         {
-            this.panelTop.BackColor = Properties.Settings.Default.TopBarColor;
-            this.panelMenu.BackColor = Properties.Settings.Default.MenuBackColor;
+            this.PanelTop.BackColor = Properties.Settings.Default.TopBarColor;
+            this.PanelMenu.BackColor = Properties.Settings.Default.MenuBackColor;
 
             // メニュー色の再適用
             SetDefaultMenuColor();
@@ -75,22 +74,21 @@ namespace WinFormsMenuDemo
         // ------------------------------------------------
         // Panel切替ロジック
         // ------------------------------------------------
-        private Dictionary<string, Form> _formCache = new Dictionary<string, Form>();
+        private readonly Dictionary<string, Form> _formCache = new();
 
         private void LoadFormToPanel(Form form)
         {
-            panelMain.Controls.Clear();
+            PanelMain.Controls.Clear();
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            panelMain.Controls.Add(form);
+            PanelMain.Controls.Add(form);
             form.Show();
         }
 
         private void SetDefaultMenuColor(Control? parent = null)
         {
-            if (parent == null)
-                parent = this.panelMenu;
+            parent ??= this.PanelMenu;
 
             // ボタンの色を初期化
             foreach (Control ctrl in parent.Controls)
@@ -123,7 +121,7 @@ namespace WinFormsMenuDemo
                 IForm受注View view = new Form受注();
                 string sqlConnectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
                 I受注Repository repository = new 受注Repository(sqlConnectionString);
-                new 受注Presenter(view, repository);
+                _ = new 受注Presenter(view, repository);
                 return (Form)view;
             }
 
@@ -132,7 +130,7 @@ namespace WinFormsMenuDemo
                 IForm得意先View view = new Form得意先();
                 string sqlConnectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
                 I得意先Repository repository = new 得意先Repository(sqlConnectionString);
-                new 得意先Presenter(view, repository);
+                _ = new 得意先Presenter(view, repository);
                 return (Form)view;
             }
 
@@ -153,51 +151,51 @@ namespace WinFormsMenuDemo
             return f;
         }
 
-        private void button受注_Click(object sender, EventArgs e)
+        private void Btn受注_Click(object sender, EventArgs e)
         {
             SetDefaultMenuColor();
-            button受注.BackColor = Properties.Settings.Default.TopBarColor;
+            Btn受注.BackColor = Properties.Settings.Default.TopBarColor;
 
             ShowForm("受注", typeof(Form受注));
         }
 
-        private void buttonマスター_Click(object sender, EventArgs e)
+        private void Btnマスター_Click(object sender, EventArgs e)
         {
-            if (panelマスター.Visible)
+            if (Panelマスター.Visible)
             {
-                panelマスター.Visible = false;
+                Panelマスター.Visible = false;
             }
             else
             {
-                panelマスター.Visible = true;
+                Panelマスター.Visible = true;
             }
         }
 
-        private void button得意先_Click(object sender, EventArgs e)
+        private void Btn得意先_Click(object sender, EventArgs e)
         {
             SetDefaultMenuColor();
-            button得意先.BackColor = Properties.Settings.Default.TopBarColor;
+            Btn得意先.BackColor = Properties.Settings.Default.TopBarColor;
 
             ShowForm("得意先", typeof(Form得意先));
         }
 
-        private void button製品_Click(object sender, EventArgs e)
+        private void Btn製品_Click(object sender, EventArgs e)
         {
             SetDefaultMenuColor();
-            button製品.BackColor = Properties.Settings.Default.TopBarColor;
+            Btn製品.BackColor = Properties.Settings.Default.TopBarColor;
 
             ShowForm("製品", typeof(Form製品));
         }
 
-        private void button設定_Click(object sender, EventArgs e)
+        private void Btn設定_Click(object sender, EventArgs e)
         {
             SetDefaultMenuColor();
-            button設定.BackColor = Properties.Settings.Default.TopBarColor;
+            Btn設定.BackColor = Properties.Settings.Default.TopBarColor;
 
             ShowForm("設定", typeof(Form設定));
         }
 
-        private void buttonログアウト_Click(object sender, EventArgs e)
+        private void Btnログアウト_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }

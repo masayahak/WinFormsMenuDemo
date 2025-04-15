@@ -7,70 +7,70 @@ namespace WinFormsMenuDemo.Presenters
     public class 得意先Presenter
     {
         //Fields
-        private IForm得意先View view;
-        private I得意先Repository repository;
-        private BindingSource 得意先bindingSource;
-        private IEnumerable<得意先Model> 得意先List;
+        private readonly IForm得意先View _view;
+        private readonly I得意先Repository _repository;
+        private readonly BindingSource _得意先bindingSource;
+        private IEnumerable<得意先Model> _得意先List;
 
         //コンストラクタ
         public 得意先Presenter(IForm得意先View view, I得意先Repository repository)
         {
-            this.得意先bindingSource = new BindingSource();
-            this.view = view;
-            this.repository = repository;
-            this.view.SearchEvent += Search得意先;
-            this.view.AddNewEvent += AddNew得意先;
-            this.view.EditEvent += LoadSelected得意先ToEdit;
-            this.view.DeleteEvent += Delete得意先;
-            this.view.SaveEvent += Save得意先;
-            this.view.CancelEvent += Cancel得意先;
+            this._得意先bindingSource = new BindingSource();
+            this._view = view;
+            this._repository = repository;
+            this._view.SearchEvent += Search得意先;
+            this._view.AddNewEvent += AddNew得意先;
+            this._view.EditEvent += LoadSelected得意先ToEdit;
+            this._view.DeleteEvent += Delete得意先;
+            this._view.SaveEvent += Save得意先;
+            this._view.CancelEvent += Cancel得意先;
 
-            this.view.Set得意先ListBindingSource(得意先bindingSource);
+            this._view.Set得意先ListBindingSource(_得意先bindingSource);
 
-            得意先List = repository.GetAll();
-            得意先bindingSource.DataSource = 得意先List;
+            _得意先List = repository.GetAll();
+            _得意先bindingSource.DataSource = _得意先List;
 
-            this.view.Show();
+            this._view.Show();
         }
 
         private void LoadAll得意先()
         {
-            得意先List = repository.GetAll();
-            得意先bindingSource.DataSource = 得意先List;
+            _得意先List = _repository.GetAll();
+            _得意先bindingSource.DataSource = _得意先List;
         }
 
         private void Search得意先(object? sender, EventArgs e)
         {
-            bool emptyValue = string.IsNullOrWhiteSpace(this.view.SearchValue);
+            bool emptyValue = string.IsNullOrWhiteSpace(this._view.SearchValue);
             if (!emptyValue)
-                得意先List = repository.GetByValue(this.view.SearchValue);
+                _得意先List = _repository.GetByValue(this._view.SearchValue);
             else
-                得意先List = repository.GetAll();
-            得意先bindingSource.DataSource = 得意先List;
+                _得意先List = _repository.GetAll();
+            _得意先bindingSource.DataSource = _得意先List;
         }
 
         private void AddNew得意先(object? sender, EventArgs e)
         {
             // 追加時の初期値
-            view.IsEdit = false;
-            view.得意先Id = "0";
+            _view.IsEdit = false;
+            _view.得意先Id = "0";
         }
 
         private void LoadSelected得意先ToEdit(object? sender, EventArgs e)
         {
-            if (得意先bindingSource.Current is not 得意先Model selected得意先) return;
+            if (_得意先bindingSource.Current is not 得意先Model) return;
 
-            var current = (得意先Model)得意先bindingSource.Current;
-            view.得意先Id = current.得意先Id.ToString();
-            view.得意先名 = current.得意先名;
-            view.住所 = current.住所 ?? string.Empty;
-            view.電話番号 = current.電話番号 ?? string.Empty;
-            view.メール = current.メール ?? string.Empty;
-            view.Is削除済み = current.Is削除済み;
-            view.備考 = current.備考 ?? string.Empty;
-            view.Version = current.Version;
+            var current = (得意先Model)_得意先bindingSource.Current;
+            _view.得意先Id = current.得意先Id.ToString();
+            _view.得意先名 = current.得意先名;
+            _view.住所 = current.住所 ?? string.Empty;
+            _view.電話番号 = current.電話番号 ?? string.Empty;
+            _view.メール = current.メール ?? string.Empty;
+            _view.Is削除済み = current.Is削除済み;
+            _view.備考 = current.備考 ?? string.Empty;
+            _view.Version = current.Version;
 
-            view.IsEdit = true;
+            _view.IsEdit = true;
         }
 
         // 型変換チェック
@@ -84,75 +84,75 @@ namespace WinFormsMenuDemo.Presenters
         {
             if (!CanConvertTo())
             {
-                view.IsSuccessful = false;
+                _view.IsSuccessful = false;
                 return;
             }
 
             var model = new 得意先Model();
-            model.得意先Id = int.Parse(view.得意先Id);
-            model.得意先名 = view.得意先名;
-            model.住所 = view.住所;
-            model.電話番号 = view.電話番号;
-            model.メール = view.メール;
-            model.Is削除済み = view.Is削除済み;
-            model.備考 = view.備考;
-            model.Version = view.Version;
+            model.得意先Id = int.Parse(_view.得意先Id);
+            model.得意先名 = _view.得意先名;
+            model.住所 = _view.住所;
+            model.電話番号 = _view.電話番号;
+            model.メール = _view.メール;
+            model.Is削除済み = _view.Is削除済み;
+            model.備考 = _view.備考;
+            model.Version = _view.Version;
 
             try
             {
-                new Common.ModelDataValidation().Validate(model);
-                if (view.IsEdit)
+                Common.ModelDataValidation.Validate(model);
+                if (_view.IsEdit)
                 {
-                    bool ret = repository.Edit(model);
+                    bool ret = _repository.Edit(model);
                     if (ret)
                     {
-                        view.IsSuccessful = true;
-                        view.Message = "得意先マスターを修正しました。";
+                        _view.IsSuccessful = true;
+                        _view.Message = "得意先マスターを修正しました。";
                     }
                     else
                     {
-                        view.IsSuccessful = false;
-                        view.Message = "他のユーザーによって同じデータが更新されています。\nこの修正をキャンセルして、もう一度初めから修正してください。";
+                        _view.IsSuccessful = false;
+                        _view.Message = "他のユーザーによって同じデータが更新されています。\nこの修正をキャンセルして、もう一度初めから修正してください。";
                     }
                 }
                 else
                 {
-                    bool ret = repository.Add(model);
+                    bool ret = _repository.Add(model);
                     if (ret)
                     {
-                        view.IsSuccessful = true;
-                        view.Message = "得意先マスターを登録しました。";
+                        _view.IsSuccessful = true;
+                        _view.Message = "得意先マスターを登録しました。";
                     }
                     else
                     {
-                        view.IsSuccessful = false;
-                        view.Message = "得意先マスターの登録に失敗しました。";
+                        _view.IsSuccessful = false;
+                        _view.Message = "得意先マスターの登録に失敗しました。";
                     }
                 }
 
                 LoadAll得意先();
 
-                if (view.IsSuccessful)
+                if (_view.IsSuccessful)
                 {
                     CleanViewFields();
                 }
             }
             catch (Exception ex)
             {
-                view.IsSuccessful = false;
-                view.Message = ex.Message;
+                _view.IsSuccessful = false;
+                _view.Message = ex.Message;
             }
         }
 
         private void CleanViewFields()
         {
-            view.得意先Id = "0";
-            view.得意先名 = string.Empty;
-            view.住所 = string.Empty;
-            view.電話番号 = string.Empty;
-            view.メール = string.Empty;
-            view.Is削除済み = false;
-            view.備考 = string.Empty;
+            _view.得意先Id = "0";
+            _view.得意先名 = string.Empty;
+            _view.住所 = string.Empty;
+            _view.電話番号 = string.Empty;
+            _view.メール = string.Empty;
+            _view.Is削除済み = false;
+            _view.備考 = string.Empty;
         }
 
         private void Cancel得意先(object? sender, EventArgs e)
@@ -163,27 +163,27 @@ namespace WinFormsMenuDemo.Presenters
         {
             try
             {
-                if (得意先bindingSource.Current is not 得意先Model selected得意先) return;
-                var current = (得意先Model)得意先bindingSource.Current;
+                if (_得意先bindingSource.Current is not 得意先Model selected得意先) return;
+                var current = (得意先Model)_得意先bindingSource.Current;
 
-                bool ret = repository.Delete(current);
+                bool ret = _repository.Delete(current);
                 if (ret)
                 {
-                    view.IsSuccessful = true;
-                    view.Message = "得意先マスターを削除しました。";
+                    _view.IsSuccessful = true;
+                    _view.Message = "得意先マスターを削除しました。";
                 }
                 else
                 {
-                    view.IsSuccessful = false;
-                    view.Message = "他のユーザーによって同じデータが更新されています。\nもう一度初めから削除してください。";
+                    _view.IsSuccessful = false;
+                    _view.Message = "他のユーザーによって同じデータが更新されています。\nもう一度初めから削除してください。";
                 }
 
                 LoadAll得意先();
             }
             catch (Exception ex)
             {
-                view.IsSuccessful = false;
-                view.Message = ex.Message;
+                _view.IsSuccessful = false;
+                _view.Message = ex.Message;
             }
 
         }

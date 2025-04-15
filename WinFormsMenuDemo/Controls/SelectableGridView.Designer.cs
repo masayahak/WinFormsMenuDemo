@@ -2,15 +2,15 @@
 {
     partial class SelectableGridView
     {
-        private DataGridView dataGridView;
+        private DataGridView DataGridView;
 
         private void InitializeComponent()
         {
-            this.dataGridView = new DataGridView();
+            this.DataGridView = new DataGridView();
             this.SuspendLayout();
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.TabIndex = 0;
-            this.Controls.Add(this.dataGridView);
+            this.DataGridView.Name = "dataGridView";
+            this.DataGridView.TabIndex = 0;
+            this.Controls.Add(this.DataGridView);
             this.Name = "SelectableGridView";
             this.ResumeLayout(false);
         }

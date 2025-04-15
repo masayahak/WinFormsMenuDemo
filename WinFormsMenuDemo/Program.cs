@@ -1,3 +1,5 @@
+using WinFormsMenuDemo.Views;
+
 namespace WinFormsMenuDemo
 {
     internal static class Program

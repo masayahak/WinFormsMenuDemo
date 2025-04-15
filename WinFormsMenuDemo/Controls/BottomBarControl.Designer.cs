@@ -2,46 +2,46 @@
 {
     partial class BottomBarControl
     {
-        private Label labelMessage;
-        private PictureBox pictureBoxResize;
+        private Label LabelMessage;
+        private PictureBox PictureBoxResize;
 
         private void InitializeComponent()
         {
-            labelMessage = new Label();
-            pictureBoxResize = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxResize).BeginInit();
+            LabelMessage = new Label();
+            PictureBoxResize = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxResize).BeginInit();
             SuspendLayout();
             // 
             // labelMessage
             // 
-            labelMessage.AutoSize = true;
-            labelMessage.ForeColor = Color.White;
-            labelMessage.Location = new Point(20, 2);
-            labelMessage.Name = "labelMessage";
-            labelMessage.Size = new Size(51, 15);
-            labelMessage.TabIndex = 0;
-            labelMessage.Text = "メッセージ";
+            LabelMessage.AutoSize = true;
+            LabelMessage.ForeColor = Color.White;
+            LabelMessage.Location = new Point(20, 2);
+            LabelMessage.Name = "labelMessage";
+            LabelMessage.Size = new Size(51, 15);
+            LabelMessage.TabIndex = 0;
+            LabelMessage.Text = "メッセージ";
             // 
             // pictureBoxResize
             // 
-            pictureBoxResize.Cursor = Cursors.SizeNWSE;
-            pictureBoxResize.Dock = DockStyle.Right;
-            pictureBoxResize.Image = Properties.Resources.resize;
-            pictureBoxResize.Location = new Point(1373, 0);
-            pictureBoxResize.Name = "pictureBoxResize";
-            pictureBoxResize.Size = new Size(26, 25);
-            pictureBoxResize.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxResize.TabIndex = 1;
-            pictureBoxResize.TabStop = false;
+            PictureBoxResize.Cursor = Cursors.SizeNWSE;
+            PictureBoxResize.Dock = DockStyle.Right;
+            PictureBoxResize.Image = Properties.Resources.resize;
+            PictureBoxResize.Location = new Point(1373, 0);
+            PictureBoxResize.Name = "pictureBoxResize";
+            PictureBoxResize.Size = new Size(26, 25);
+            PictureBoxResize.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxResize.TabIndex = 1;
+            PictureBoxResize.TabStop = false;
             // 
             // BottomBarControl
             // 
             BackColor = Color.Gray;
-            Controls.Add(labelMessage);
-            Controls.Add(pictureBoxResize);
+            Controls.Add(LabelMessage);
+            Controls.Add(PictureBoxResize);
             Name = "BottomBarControl";
             Size = new Size(1399, 25);
-            ((System.ComponentModel.ISupportInitialize)pictureBoxResize).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxResize).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

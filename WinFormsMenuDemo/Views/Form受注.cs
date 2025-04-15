@@ -8,15 +8,15 @@ namespace WinFormsMenuDemo.Views
 {
     public partial class Form受注 : Form, IForm受注View, Iテーマ適用可能
     {
-        private bool isEdit;
-        private bool isSuccessful;
-        private string message = string.Empty;
+        private bool _isEdit;
+        private bool _isSuccessful;
+        private string _message = string.Empty;
 
         public Form受注()
         {
             InitializeComponent();
 
-            this.tabControl.TabPages.Remove(tabPage受注登録);
+            this.TabControl.TabPages.Remove(TabPage受注登録);
 
             AssociateAndRaiseViewEvents();
         }
@@ -26,44 +26,44 @@ namespace WinFormsMenuDemo.Views
         // -------------------------------------------------
         public string 受注Id
         {
-            get => textBox受注Id.Text;
-            set => textBox受注Id.Text = value;
+            get => TextBox受注Id.Text;
+            set => TextBox受注Id.Text = value;
         }
 
         public string 得意先Id
         {
-            get => textBox得意先Id.Text;
-            set => textBox得意先Id.Text = value;
+            get => TextBox得意先Id.Text;
+            set => TextBox得意先Id.Text = value;
         }
 
         public string 得意先名
         {
-            get => textBox得意先名.Text;
-            set => textBox得意先名.Text = value;
+            get => TextBox得意先名.Text;
+            set => TextBox得意先名.Text = value;
         }
 
         public string 受注日
         {
-            get => textBox受注日.Text;
-            set => textBox受注日.Text = value;
+            get => TextBox受注日.Text;
+            set => TextBox受注日.Text = value;
         }
 
         public string 合計金額
         {
-            get => textBox合計金額.Text;
-            set => textBox合計金額.Text = value;
+            get => TextBox合計金額.Text;
+            set => TextBox合計金額.Text = value;
         }
 
         public bool Is売上済み
         {
-            get => checkBox売上済み.Checked;
-            set => checkBox売上済み.Checked = value;
+            get => CheckBox売上済み.Checked;
+            set => CheckBox売上済み.Checked = value;
         }
 
         public string 備考
         {
-            get => textBox備考.Text;
-            set => textBox備考.Text = value;
+            get => TextBox備考.Text;
+            set => TextBox備考.Text = value;
         }
 
         private int _version = 0;
@@ -75,26 +75,26 @@ namespace WinFormsMenuDemo.Views
 
         public string SearchValue
         {
-            get => textBox検索.Text;
-            set => textBox検索.Text = value;
+            get => TextBox検索.Text;
+            set => TextBox検索.Text = value;
         }
 
         public bool IsEdit
         {
-            get { return isEdit; }
-            set { isEdit = value; }
+            get { return _isEdit; }
+            set { _isEdit = value; }
         }
 
         public bool IsSuccessful
         {
-            get { return isSuccessful; }
-            set { isSuccessful = value; }
+            get { return _isSuccessful; }
+            set { _isSuccessful = value; }
         }
 
         public string Message
         {
-            get { return message; }
-            set { message = value; }
+            get { return _message; }
+            set { _message = value; }
         }
 
         // -------------------------------------------------
@@ -110,8 +110,8 @@ namespace WinFormsMenuDemo.Views
         private void AssociateAndRaiseViewEvents()
         {
             // 検索
-            this.button検索.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
-            this.textBox検索.KeyDown += (s, e) =>
+            this.Btn検索.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
+            this.TextBox検索.KeyDown += (s, e) =>
                         {
                             if (e.KeyCode == Keys.Enter)
                             {
@@ -122,54 +122,54 @@ namespace WinFormsMenuDemo.Views
 
             // 登録系 -----------------------------------------
             // 追加
-            this.button追加.Click += delegate
+            this.Btn追加.Click += delegate
             {
                 AddNewEvent?.Invoke(this, EventArgs.Empty);
-                this.tabControl.TabPages.Add(tabPage受注登録);
-                this.button削除.Visible = false;
-                this.tabControl.TabPages.Remove(tabPage受注一覧);
+                this.TabControl.TabPages.Add(TabPage受注登録);
+                this.Btn削除.Visible = false;
+                this.TabControl.TabPages.Remove(TabPage受注一覧);
             };
 
             // 修正
-            this.dataGridView.CellDoubleClick += (s, e) =>
+            this.DataGridView.CellDoubleClick += (s, e) =>
             {
                 EditEvent?.Invoke(this, EventArgs.Empty);
-                this.tabControl.TabPages.Add(tabPage受注登録);
-                this.button削除.Visible = true;
-                this.tabControl.TabPages.Remove(tabPage受注一覧);
+                this.TabControl.TabPages.Add(TabPage受注登録);
+                this.Btn削除.Visible = true;
+                this.TabControl.TabPages.Remove(TabPage受注一覧);
             };
 
-            this.button保存.Click += delegate
+            this.Btn保存.Click += delegate
             {
                 SaveEvent?.Invoke(this, EventArgs.Empty);
                 if (IsSuccessful)
                 {
-                    this.tabControl.TabPages.Add(tabPage受注一覧);
-                    this.tabControl.TabPages.Remove(tabPage受注登録);
+                    this.TabControl.TabPages.Add(TabPage受注一覧);
+                    this.TabControl.TabPages.Remove(TabPage受注登録);
                 }
-                ShowMessageToUser(message);
+                ShowMessageToUser(_message);
             };
-            this.buttonキャンセル.Click += delegate
+            this.Btnキャンセル.Click += delegate
             {
                 CancelEvent?.Invoke(this, EventArgs.Empty);
-                this.tabControl.TabPages.Add(tabPage受注一覧);
-                this.tabControl.TabPages.Remove(tabPage受注登録);
+                this.TabControl.TabPages.Add(TabPage受注一覧);
+                this.TabControl.TabPages.Remove(TabPage受注登録);
             };
-            this.button削除.Click += delegate
+            this.Btn削除.Click += delegate
             {
                 var result = MessageBox.Show("削除します。", "警告",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
                     DeleteEvent?.Invoke(this, EventArgs.Empty);
-                    ShowMessageToUser(message);
-                    this.tabControl.TabPages.Add(tabPage受注一覧);
-                    this.tabControl.TabPages.Remove(tabPage受注登録);
+                    ShowMessageToUser(_message);
+                    this.TabControl.TabPages.Add(TabPage受注一覧);
+                    this.TabControl.TabPages.Remove(TabPage受注登録);
                 }
             };
 
             // 得意先検索
-            this.button得意先検索.Click += delegate
+            this.Btn得意先検索.Click += delegate
             {
                 using (var form = new Form得意先一覧())
                 {
@@ -195,13 +195,13 @@ namespace WinFormsMenuDemo.Views
         public void ApplyTheme()
         {
             // グリッド色を再適用
-            dataGridView.ApplyTheme();
+            DataGridView.ApplyTheme();
         }
 
         // メッセージ表示
         private void ShowMessageToUser(string message)
         {
-            this.message = message;
+            this._message = message;
 
             // トースト表示
             var toast = new ToastPanel();
@@ -226,17 +226,17 @@ namespace WinFormsMenuDemo.Views
         public void Set受注ListBindingSource(BindingSource 受注list)
         {
             カスタムDataGridView設定();
-            this.dataGridView.BarGraphColumnName = "合計金額";
-            this.dataGridView.DataSource = 受注list;
+            this.DataGridView.BarGraphColumnName = "合計金額";
+            this.DataGridView.DataSource = 受注list;
         }
 
         private void カスタムDataGridView設定()
         {
-            if (dataGridView is not SelectableGridView) return; // ← 型チェックして保護
-            dataGridView.Columns.Clear();
+            if (DataGridView is not SelectableGridView) return; // ← 型チェックして保護
+            DataGridView.Columns.Clear();
 
             // 各列を定義して追加する
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            DataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "受注Id",
                 HeaderText = "受注Id",
@@ -244,21 +244,21 @@ namespace WinFormsMenuDemo.Views
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
 
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            DataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "得意先Id",
                 HeaderText = "得意先Id",
                 Visible = false
             });
 
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            DataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "得意先名",
                 HeaderText = "得意先名",
                 Width = 300
             });
 
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            DataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "受注日",
                 HeaderText = "受注日",
@@ -270,7 +270,7 @@ namespace WinFormsMenuDemo.Views
                 }
             });
 
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            DataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "合計金額",
                 HeaderText = "合計金額",
@@ -282,21 +282,21 @@ namespace WinFormsMenuDemo.Views
                 }
             });
 
-            dataGridView.Columns.Add(new DataGridViewCheckBoxColumn
+            DataGridView.Columns.Add(new DataGridViewCheckBoxColumn
             {
                 DataPropertyName = "Is売上済み",
                 HeaderText = "売上済み",
                 Width = 80
             });
 
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            DataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "備考",
                 HeaderText = "備考",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            DataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Version",
                 HeaderText = "Version",

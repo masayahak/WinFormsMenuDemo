@@ -7,45 +7,45 @@ namespace WinFormsMenuDemo.Presenters.Shared
     public class 得意先一覧Presenter
     {
         //Fields
-        private IForm得意先一覧View view;
-        private I得意先Repository repository;
-        private BindingSource 得意先一覧bindingSource;
-        private IEnumerable<得意先一覧Model> 得意先一覧List;
+        private readonly IForm得意先一覧View _view;
+        private readonly I得意先Repository _repository;
+        private readonly BindingSource _得意先一覧bindingSource;
+        private IEnumerable<得意先一覧Model> _得意先一覧List;
 
 
         //コンストラクタ
         public 得意先一覧Presenter(IForm得意先一覧View view, I得意先Repository repository)
         {
-            this.得意先一覧bindingSource = new BindingSource();
-            this.view = view;
-            this.repository = repository;
-            this.view.SearchEvent += Search得意先一覧;
-            this.view.SelectEvent += Select得意先一覧;
-            this.view.CancelEvent += Cancel得意先一覧;
+            this._得意先一覧bindingSource = new BindingSource();
+            this._view = view;
+            this._repository = repository;
+            this._view.SearchEvent += Search得意先一覧;
+            this._view.SelectEvent += Select得意先一覧;
+            this._view.CancelEvent += Cancel得意先一覧;
 
-            this.view.Set得意先一覧ListBindingSource(得意先一覧bindingSource);
+            this._view.Set得意先一覧ListBindingSource(_得意先一覧bindingSource);
 
-            得意先一覧List = repository.GetAll();
-            得意先一覧bindingSource.DataSource = 得意先一覧List;
+            _得意先一覧List = repository.GetAll();
+            _得意先一覧bindingSource.DataSource = _得意先一覧List;
         }
 
         private void Search得意先一覧(object? sender, EventArgs e)
         {
-            bool emptyValue = string.IsNullOrWhiteSpace(this.view.SearchValue);
+            bool emptyValue = string.IsNullOrWhiteSpace(this._view.SearchValue);
             if (!emptyValue)
-                得意先一覧List = repository.GetByValue(this.view.SearchValue);
+                _得意先一覧List = _repository.GetByValue(this._view.SearchValue);
             else
-                得意先一覧List = repository.GetAll();
-            得意先一覧bindingSource.DataSource = 得意先一覧List;
+                _得意先一覧List = _repository.GetAll();
+            _得意先一覧bindingSource.DataSource = _得意先一覧List;
         }
 
         private void Select得意先一覧(object? sender, EventArgs e)
         {
-            if (得意先一覧bindingSource.Current is not 得意先一覧Model selected得意先) return;
+            if (_得意先一覧bindingSource.Current is not 得意先一覧Model) return;
 
-            var current = (得意先一覧Model)得意先一覧bindingSource.Current;
-            view.得意先Id = current.得意先Id.ToString();
-            view.得意先名 = current.得意先名;
+            var current = (得意先一覧Model)_得意先一覧bindingSource.Current;
+            _view.得意先Id = current.得意先Id.ToString();
+            _view.得意先名 = current.得意先名;
         }
 
         private void Cancel得意先一覧(object? sender, EventArgs e)

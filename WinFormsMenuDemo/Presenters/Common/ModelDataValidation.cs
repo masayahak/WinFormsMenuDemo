@@ -4,7 +4,7 @@ namespace WinFormsMenuDemo.Presenters.Common
 {
     public class ModelDataValidation
     {
-        public void Validate(object model)
+        public static void Validate(object model)
         {
             string errorMessage = string.Empty;
             List<ValidationResult> results = new List<ValidationResult>();

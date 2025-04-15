@@ -8,7 +8,7 @@ namespace WinFormsMenuDemo.Controls
         public BottomBarControl()
         {
             InitializeComponent();
-            pictureBoxResize.MouseDown += pictureBoxResize_MouseDown;
+            PictureBoxResize.MouseDown += PictureBoxResize_MouseDown;
         }
 
         [Browsable(true)]
@@ -16,15 +16,15 @@ namespace WinFormsMenuDemo.Controls
         [Description("メッセージ表示用テキスト")]
         public string MessageText
         {
-            get => labelMessage.Text;
+            get => LabelMessage.Text;
             set
             {
                 var timePrefix = DateTime.Now.ToString("HH:mm");
-                labelMessage.Text = $"{timePrefix} {value}";
+                LabelMessage.Text = $"{timePrefix} {value}";
             }
         }
 
-        private void pictureBoxResize_MouseDown(object? sender, MouseEventArgs e)
+        private void PictureBoxResize_MouseDown(object? sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -37,8 +37,11 @@ namespace WinFormsMenuDemo.Controls
             }
         }
 
-        [DllImport("user32.dll")] private static extern bool ReleaseCapture();
-        [DllImport("user32.dll")] private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [LibraryImport("user32.dll")]
+        private static partial void ReleaseCapture();
+
+        [LibraryImport("user32.dll")]
+        private static partial IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
         private const int WM_NCLBUTTONDOWN = 0xA1;
         private const int HTBOTTOMRIGHT = 17;

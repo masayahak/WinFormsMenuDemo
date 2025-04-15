@@ -132,7 +132,7 @@ namespace WinFormsMenuDemo.Controls
             }
         }
 
-        private string GetExcelColumnLetter(int index)
+        private static string GetExcelColumnLetter(int index)
         {
             const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             string result = "";

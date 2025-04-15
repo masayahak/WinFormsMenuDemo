@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel;
-using WinFormsMenuDemo.Models;
+using System.Windows.Forms;
 
 namespace WinFormsMenuDemo.Controls
 {
     public partial class SelectableGridView : UserControl
     {
-        public DataGridView Grid => dataGridView;
+        public DataGridView Grid => DataGridView;
         public event DataGridViewCellEventHandler? CellDoubleClick;
         public event DataGridViewCellPaintingEventHandler? CellPainting;
 
@@ -13,19 +13,20 @@ namespace WinFormsMenuDemo.Controls
         {
             InitializeComponent();
             InitializeGrid();
+            DataGridView.ReadOnly = true;
 
             // 内部イベントを外部に転送
-            dataGridView.CellDoubleClick += (s, e) => CellDoubleClick?.Invoke(s, e);
-            dataGridView.CellPainting += (s, e) => CellPainting?.Invoke(s, e);
+            DataGridView.CellDoubleClick += (s, e) => CellDoubleClick?.Invoke(s, e);
+            DataGridView.CellPainting += (s, e) => CellPainting?.Invoke(s, e);
         }
 
         public BindingSource? DataSource
         {
-            get => dataGridView.DataSource as BindingSource;
-            set => dataGridView.DataSource = value;
+            get => DataGridView.DataSource as BindingSource;
+            set => DataGridView.DataSource = value;
         }
 
-        public DataGridViewColumnCollection Columns => dataGridView.Columns;
+        public DataGridViewColumnCollection Columns => DataGridView.Columns;
 
 
         [Browsable(true)]
@@ -35,31 +36,31 @@ namespace WinFormsMenuDemo.Controls
 
         private void InitializeGrid()
         {
-            dataGridView.Dock = DockStyle.Fill;
-            dataGridView.AllowUserToResizeRows = false;
-            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.MultiSelect = false;
-            dataGridView.RowHeadersVisible = false;
-            dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
-            dataGridView.RowTemplate.Height = 30;
+            DataGridView.Dock = DockStyle.Fill;
+            DataGridView.AllowUserToResizeRows = false;
+            DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DataGridView.MultiSelect = false;
+            DataGridView.RowHeadersVisible = false;
+            DataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+            DataGridView.RowTemplate.Height = 30;
 
-            dataGridView.EnableHeadersVisualStyles = false;
-            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Properties.Settings.Default.GridHeaderColor;
-            dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Properties.Settings.Default.GridHeaderColor;
-            dataGridView.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView.ColumnHeadersHeight = 40;
-            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            DataGridView.EnableHeadersVisualStyles = false;
+            DataGridView.ColumnHeadersDefaultCellStyle.BackColor = Properties.Settings.Default.GridHeaderColor;
+            DataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            DataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Properties.Settings.Default.GridHeaderColor;
+            DataGridView.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+            DataGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            DataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            DataGridView.ColumnHeadersHeight = 40;
+            DataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 128);
 
-            dataGridView.DefaultCellStyle.SelectionBackColor = Properties.Settings.Default.GridSelectedBackColor;
-            dataGridView.DefaultCellStyle.SelectionForeColor = Properties.Settings.Default.GridSelectedForeColor;
+            DataGridView.DefaultCellStyle.SelectionBackColor = Properties.Settings.Default.GridSelectedBackColor;
+            DataGridView.DefaultCellStyle.SelectionForeColor = Properties.Settings.Default.GridSelectedForeColor;
 
-            dataGridView.AutoGenerateColumns = false;
-            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            DataGridView.AutoGenerateColumns = false;
+            DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
-            dataGridView.CellPainting += DataGridView_CellPainting;
+            DataGridView.CellPainting += DataGridView_CellPainting;
         }
 
         public void ApplyTheme()
@@ -72,7 +73,7 @@ namespace WinFormsMenuDemo.Controls
             if (string.IsNullOrEmpty(BarGraphColumnName)) return;
 
             if (e.RowIndex >= 0 &&
-                dataGridView.Columns[e.ColumnIndex].DataPropertyName == BarGraphColumnName)
+                DataGridView.Columns[e.ColumnIndex].DataPropertyName == BarGraphColumnName)
             {
                 e.Handled = true;
                 e.PaintBackground(e.CellBounds, true);
@@ -84,7 +85,7 @@ namespace WinFormsMenuDemo.Controls
 
                     int barWidth = (int)((numericValue / (float)max) * (e.CellBounds.Width - 6));
                     int barX = e.CellBounds.Right - barWidth - 3;
-                    Rectangle bar = new Rectangle(barX, e.CellBounds.Y + 3, barWidth, e.CellBounds.Height - 6);
+                    Rectangle bar = new(barX, e.CellBounds.Y + 3, barWidth, e.CellBounds.Height - 6);
 
                     using var brush = new SolidBrush(Properties.Settings.Default.GridGraphColor);
                     e.Graphics!.FillRectangle(brush, bar);
@@ -98,7 +99,7 @@ namespace WinFormsMenuDemo.Controls
 
         private int GetMaxValue()
         {
-            if (dataGridView.DataSource is BindingSource bs &&
+            if (DataGridView.DataSource is BindingSource bs &&
                 bs.List is IEnumerable<object> list)
             {
                 var firstItem = list.FirstOrDefault();

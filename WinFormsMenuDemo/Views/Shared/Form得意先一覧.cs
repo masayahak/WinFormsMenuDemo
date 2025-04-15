@@ -19,8 +19,8 @@ namespace WinFormsMenuDemo.Forms.Shared
         private void AssociateAndRaiseViewEvents()
         {
             // 検索
-            this.button検索.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
-            this.textBox検索.KeyDown += (s, e) =>
+            this.Btn検索.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
+            this.TextBox検索.KeyDown += (s, e) =>
             {
                 if (e.KeyCode == Keys.Enter)
                 {
@@ -29,7 +29,7 @@ namespace WinFormsMenuDemo.Forms.Shared
                 }
             };
 
-            this.button決定.Click += delegate
+            this.Btn決定.Click += delegate
             {
                 SelectEvent?.Invoke(this, EventArgs.Empty);
                 this.DialogResult = DialogResult.OK;
@@ -42,7 +42,7 @@ namespace WinFormsMenuDemo.Forms.Shared
                 this.Close();
             };
 
-            this.buttonキャンセル.Click += delegate
+            this.Btnキャンセル.Click += delegate
             {
                 CancelEvent?.Invoke(this, EventArgs.Empty);
                 this.DialogResult = DialogResult.Cancel;
@@ -68,8 +68,8 @@ namespace WinFormsMenuDemo.Forms.Shared
 
         public string SearchValue
         {
-            get => textBox検索.Text;
-            set => textBox検索.Text = value;
+            get => TextBox検索.Text;
+            set => TextBox検索.Text = value;
         }
 
         // メソッド

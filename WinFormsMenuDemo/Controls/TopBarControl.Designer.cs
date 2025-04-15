@@ -2,69 +2,69 @@
 {
     partial class TopBarControl
     {
-        private Label lblTitle;
-        private Button btnMin;
-        private Button btnMax;
-        private Button btnClose;
+        private Label LblTitle;
+        private Button BtnMin;
+        private Button BtnMax;
+        private Button BtnClose;
 
         private void InitializeComponent()
         {
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.btnMin = new System.Windows.Forms.Button();
-            this.btnMax = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.LblTitle = new System.Windows.Forms.Label();
+            this.BtnMin = new System.Windows.Forms.Button();
+            this.BtnMax = new System.Windows.Forms.Button();
+            this.BtnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitle
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(10, 5);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(100, 21);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "アプリタイトル";
+            this.LblTitle.AutoSize = true;
+            this.LblTitle.ForeColor = System.Drawing.Color.White;
+            this.LblTitle.Location = new System.Drawing.Point(10, 5);
+            this.LblTitle.Name = "lblTitle";
+            this.LblTitle.Size = new System.Drawing.Size(100, 21);
+            this.LblTitle.TabIndex = 0;
+            this.LblTitle.Text = "アプリタイトル";
             // 
             // btnMin
             // 
-            this.btnMin.FlatAppearance.BorderSize = 0;
-            this.btnMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMin.Image = Properties.Resources.dash;
-            this.btnMin.Name = "btnMin";
-            this.btnMin.Size = new System.Drawing.Size(30, 30);
-            this.btnMin.TabIndex = 1;
-            this.btnMin.UseVisualStyleBackColor = true;
-            this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
+            this.BtnMin.FlatAppearance.BorderSize = 0;
+            this.BtnMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMin.Image = Properties.Resources.dash;
+            this.BtnMin.Name = "btnMin";
+            this.BtnMin.Size = new System.Drawing.Size(30, 30);
+            this.BtnMin.TabIndex = 1;
+            this.BtnMin.UseVisualStyleBackColor = true;
+            this.BtnMin.Click += new System.EventHandler(this.BtnMin_Click);
             // 
             // btnMax
             // 
-            this.btnMax.FlatAppearance.BorderSize = 0;
-            this.btnMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMax.Image = Properties.Resources.square;
-            this.btnMax.Name = "btnMax";
-            this.btnMax.Size = new System.Drawing.Size(30, 30);
-            this.btnMax.TabIndex = 2;
-            this.btnMax.UseVisualStyleBackColor = true;
-            this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
+            this.BtnMax.FlatAppearance.BorderSize = 0;
+            this.BtnMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMax.Image = Properties.Resources.square;
+            this.BtnMax.Name = "btnMax";
+            this.BtnMax.Size = new System.Drawing.Size(30, 30);
+            this.BtnMax.TabIndex = 2;
+            this.BtnMax.UseVisualStyleBackColor = true;
+            this.BtnMax.Click += new System.EventHandler(this.BtnMax_Click);
             // 
             // btnClose
             // 
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = Properties.Resources.x;
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(30, 30);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.BtnClose.FlatAppearance.BorderSize = 0;
+            this.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnClose.Image = Properties.Resources.x;
+            this.BtnClose.Name = "btnClose";
+            this.BtnClose.Size = new System.Drawing.Size(30, 30);
+            this.BtnClose.TabIndex = 3;
+            this.BtnClose.UseVisualStyleBackColor = true;
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // TopBarControl
             // 
             this.BackColor = System.Drawing.Color.DarkOrange;
-            this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.btnMin);
-            this.Controls.Add(this.btnMax);
-            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.LblTitle);
+            this.Controls.Add(this.BtnMin);
+            this.Controls.Add(this.BtnMax);
+            this.Controls.Add(this.BtnClose);
             this.Font = new System.Drawing.Font("Yu Gothic UI", 12F);
             this.Name = "TopBarControl";
             this.Size = new System.Drawing.Size(1400, 30);

@@ -4,7 +4,7 @@ namespace WinFormsMenuDemo.Controls
 {
     public partial class ToastPanel : Panel
     {
-        private Timer? timer;
+        private Timer? _timer;
 
         public int DisplayTime { get; set; } = 2000;
 
@@ -45,15 +45,17 @@ namespace WinFormsMenuDemo.Controls
             this.Visible = true;
 
             // タイマーで自動消去
-            timer = new Timer();
-            timer.Interval = DisplayTime;
-            timer.Tick += (s, e) =>
+            _timer = new Timer
             {
-                timer.Stop();
+                Interval = DisplayTime
+            };
+            _timer.Tick += (s, e) =>
+            {
+                _timer.Stop();
                 this.Visible = false;
                 parent.Controls.Remove(this);
             };
-            timer.Start();
+            _timer.Start();
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -64,7 +66,7 @@ namespace WinFormsMenuDemo.Controls
             {
                 Alignment = System.Drawing.Drawing2D.PenAlignment.Inset
             };
-            Rectangle rect = new Rectangle(0, 0, this.Width - 1, this.Height - 1);
+            Rectangle rect = new(0, 0, this.Width - 1, this.Height - 1);
             e.Graphics.DrawRectangle(redPen, rect);
         }
     }

@@ -18,8 +18,8 @@ namespace WinFormsMenuDemo.Controls
         [Description("タイトルバーに表示するアプリ名")]
         public string Title
         {
-            get => lblTitle.Text;
-            set => lblTitle.Text = value;
+            get => LblTitle.Text;
+            set => LblTitle.Text = value;
         }
 
         [Browsable(true)]
@@ -36,8 +36,8 @@ namespace WinFormsMenuDemo.Controls
         [Description("最小化ボタンを表示するかどうか")]
         public bool ShowMinimizeButton
         {
-            get => btnMin.Visible;
-            set => btnMin.Visible = value;
+            get => BtnMin.Visible;
+            set => BtnMin.Visible = value;
         }
 
         [Browsable(true)]
@@ -45,8 +45,8 @@ namespace WinFormsMenuDemo.Controls
         [Description("最大化ボタンを表示するかどうか")]
         public bool ShowMaximizeButton
         {
-            get => btnMax.Visible;
-            set => btnMax.Visible = value;
+            get => BtnMax.Visible;
+            set => BtnMax.Visible = value;
         }
 
         [Browsable(true)]
@@ -54,8 +54,8 @@ namespace WinFormsMenuDemo.Controls
         [Description("閉じるボタンを表示するかどうか")]
         public bool ShowCloseButton
         {
-            get => btnClose.Visible;
-            set => btnClose.Visible = value;
+            get => BtnClose.Visible;
+            set => BtnClose.Visible = value;
         }
 
         // ================ テーマ適用 ========================
@@ -67,10 +67,10 @@ namespace WinFormsMenuDemo.Controls
         private void ApplyThemeColor(Color color)
         {
             this.BackColor = color;
-            lblTitle.BackColor = color;
-            btnMin.BackColor = color;
-            btnMax.BackColor = color;
-            btnClose.BackColor = color;
+            LblTitle.BackColor = color;
+            BtnMin.BackColor = color;
+            BtnMax.BackColor = color;
+            BtnClose.BackColor = color;
         }
 
         private void TopBarControl_Layout(object? sender, EventArgs e)
@@ -79,26 +79,25 @@ namespace WinFormsMenuDemo.Controls
             int spacing = 5;
             int right = this.Width;
 
-            if (btnClose.Visible)
+            if (BtnClose.Visible)
             {
                 right -= spacing;
-                btnClose.Location = new Point(right - buttonWidth, 0);
-                btnClose.BringToFront();
+                BtnClose.Location = new Point(right - buttonWidth, 0);
+                BtnClose.BringToFront();
                 right -= buttonWidth + spacing;
             }
 
-            if (btnMax.Visible)
+            if (BtnMax.Visible)
             {
-                btnMax.Location = new Point(right - buttonWidth, 0);
-                btnMax.BringToFront();
+                BtnMax.Location = new Point(right - buttonWidth, 0);
+                BtnMax.BringToFront();
                 right -= buttonWidth + spacing;
             }
 
-            if (btnMin.Visible)
+            if (BtnMin.Visible)
             {
-                btnMin.Location = new Point(right - buttonWidth, 0);
-                btnMin.BringToFront();
-                right -= buttonWidth + spacing;
+                BtnMin.Location = new Point(right - buttonWidth, 0);
+                BtnMin.BringToFront();
             }
         }
 
@@ -112,14 +111,17 @@ namespace WinFormsMenuDemo.Controls
             }
         }
 
-        [DllImport("user32.dll")] private static extern bool ReleaseCapture();
-        [DllImport("user32.dll")] private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [LibraryImport("user32.dll")]
+        private static partial void ReleaseCapture();
+
+        [LibraryImport("user32.dll")]
+        private static partial IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
         private const int WM_NCLBUTTONDOWN = 0xA1;
         private const int HTCAPTION = 0x2;
 
 
-        private void btnMin_Click(object sender, EventArgs e)
+        private void BtnMin_Click(object sender, EventArgs e)
         {
             var form = this.FindForm();
             if (form != null)
@@ -128,7 +130,7 @@ namespace WinFormsMenuDemo.Controls
             }
         }
 
-        private void btnMax_Click(object sender, EventArgs e)
+        private void BtnMax_Click(object sender, EventArgs e)
         {
             var form = this.FindForm();
             if (form != null)
@@ -139,13 +141,10 @@ namespace WinFormsMenuDemo.Controls
             }
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
             var form = this.FindForm();
-            if (form != null)
-            {
-                form.Close();
-            }
+            form?.Close();
         }
     }
 }

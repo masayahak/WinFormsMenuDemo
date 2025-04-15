@@ -30,95 +30,95 @@ namespace WinFormsMenuDemo.Forms.Shared
         /// </summary>
         private void InitializeComponent()
         {
-            panelSearch = new Panel();
-            button検索 = new Button();
-            textBox検索 = new TextBox();
-            panelBottom = new Panel();
-            buttonキャンセル = new Button();
-            button決定 = new Button();
+            PanelSearch = new Panel();
+            Btn検索 = new Button();
+            TextBox検索 = new TextBox();
+            PanelBottom = new Panel();
+            Btnキャンセル = new Button();
+            Btn決定 = new Button();
             dataGridView = new SelectableGridView();
-            panelSearch.SuspendLayout();
-            panelBottom.SuspendLayout();
+            PanelSearch.SuspendLayout();
+            PanelBottom.SuspendLayout();
             SuspendLayout();
             // 
             // panelSearch
             // 
-            panelSearch.BackColor = Color.WhiteSmoke;
-            panelSearch.Controls.Add(button検索);
-            panelSearch.Controls.Add(textBox検索);
-            panelSearch.Dock = DockStyle.Top;
-            panelSearch.Location = new Point(0, 0);
-            panelSearch.Margin = new Padding(4);
-            panelSearch.Name = "panelSearch";
-            panelSearch.Size = new Size(784, 50);
-            panelSearch.TabIndex = 3;
+            PanelSearch.BackColor = Color.WhiteSmoke;
+            PanelSearch.Controls.Add(Btn検索);
+            PanelSearch.Controls.Add(TextBox検索);
+            PanelSearch.Dock = DockStyle.Top;
+            PanelSearch.Location = new Point(0, 0);
+            PanelSearch.Margin = new Padding(4);
+            PanelSearch.Name = "panelSearch";
+            PanelSearch.Size = new Size(784, 50);
+            PanelSearch.TabIndex = 3;
             // 
             // button検索
             // 
-            button検索.BackColor = Color.LightBlue;
-            button検索.FlatAppearance.BorderSize = 0;
-            button検索.FlatStyle = FlatStyle.Flat;
-            button検索.Font = new Font("Yu Gothic UI", 12F);
-            button検索.Location = new Point(499, 13);
-            button検索.Margin = new Padding(4);
-            button検索.Name = "button検索";
-            button検索.Size = new Size(73, 30);
-            button検索.TabIndex = 1;
-            button検索.Text = "検索";
-            button検索.UseVisualStyleBackColor = false;
+            Btn検索.BackColor = Color.LightBlue;
+            Btn検索.FlatAppearance.BorderSize = 0;
+            Btn検索.FlatStyle = FlatStyle.Flat;
+            Btn検索.Font = new Font("Yu Gothic UI", 12F);
+            Btn検索.Location = new Point(499, 13);
+            Btn検索.Margin = new Padding(4);
+            Btn検索.Name = "button検索";
+            Btn検索.Size = new Size(73, 30);
+            Btn検索.TabIndex = 1;
+            Btn検索.Text = "検索";
+            Btn検索.UseVisualStyleBackColor = false;
             // 
             // textBox検索
             // 
-            textBox検索.Font = new Font("Yu Gothic UI", 12F);
-            textBox検索.Location = new Point(5, 13);
-            textBox検索.Margin = new Padding(4);
-            textBox検索.Name = "textBox検索";
-            textBox検索.PlaceholderText = "得意先Id(数値)   または  得意先名の一部を入力";
-            textBox検索.Size = new Size(484, 29);
-            textBox検索.TabIndex = 2;
+            TextBox検索.Font = new Font("Yu Gothic UI", 12F);
+            TextBox検索.Location = new Point(5, 13);
+            TextBox検索.Margin = new Padding(4);
+            TextBox検索.Name = "textBox検索";
+            TextBox検索.PlaceholderText = "得意先Id(数値)   または  得意先名の一部を入力";
+            TextBox検索.Size = new Size(484, 29);
+            TextBox検索.TabIndex = 2;
             // 
             // panelBottom
             // 
-            panelBottom.Controls.Add(buttonキャンセル);
-            panelBottom.Controls.Add(button決定);
-            panelBottom.Dock = DockStyle.Bottom;
-            panelBottom.Location = new Point(0, 491);
-            panelBottom.Margin = new Padding(4);
-            panelBottom.Name = "panelBottom";
-            panelBottom.Size = new Size(784, 70);
-            panelBottom.TabIndex = 4;
+            PanelBottom.Controls.Add(Btnキャンセル);
+            PanelBottom.Controls.Add(Btn決定);
+            PanelBottom.Dock = DockStyle.Bottom;
+            PanelBottom.Location = new Point(0, 491);
+            PanelBottom.Margin = new Padding(4);
+            PanelBottom.Name = "panelBottom";
+            PanelBottom.Size = new Size(784, 70);
+            PanelBottom.TabIndex = 4;
             // 
             // buttonキャンセル
             // 
-            buttonキャンセル.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonキャンセル.BackColor = Color.Gray;
-            buttonキャンセル.FlatAppearance.BorderSize = 0;
-            buttonキャンセル.FlatStyle = FlatStyle.Flat;
-            buttonキャンセル.Font = new Font("Yu Gothic UI", 12F);
-            buttonキャンセル.ForeColor = Color.White;
-            buttonキャンセル.Location = new Point(600, 14);
-            buttonキャンセル.Margin = new Padding(4);
-            buttonキャンセル.Name = "buttonキャンセル";
-            buttonキャンセル.Size = new Size(120, 40);
-            buttonキャンセル.TabIndex = 13;
-            buttonキャンセル.Text = "キャンセル";
-            buttonキャンセル.UseVisualStyleBackColor = false;
+            Btnキャンセル.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            Btnキャンセル.BackColor = Color.Gray;
+            Btnキャンセル.FlatAppearance.BorderSize = 0;
+            Btnキャンセル.FlatStyle = FlatStyle.Flat;
+            Btnキャンセル.Font = new Font("Yu Gothic UI", 12F);
+            Btnキャンセル.ForeColor = Color.White;
+            Btnキャンセル.Location = new Point(600, 14);
+            Btnキャンセル.Margin = new Padding(4);
+            Btnキャンセル.Name = "buttonキャンセル";
+            Btnキャンセル.Size = new Size(120, 40);
+            Btnキャンセル.TabIndex = 13;
+            Btnキャンセル.Text = "キャンセル";
+            Btnキャンセル.UseVisualStyleBackColor = false;
             // 
             // button決定
             // 
-            button決定.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button決定.BackColor = Color.Green;
-            button決定.FlatAppearance.BorderSize = 0;
-            button決定.FlatStyle = FlatStyle.Flat;
-            button決定.Font = new Font("Yu Gothic UI", 12F);
-            button決定.ForeColor = Color.White;
-            button決定.Location = new Point(379, 11);
-            button決定.Margin = new Padding(4);
-            button決定.Name = "button決定";
-            button決定.Size = new Size(120, 40);
-            button決定.TabIndex = 12;
-            button決定.Text = "決定";
-            button決定.UseVisualStyleBackColor = false;
+            Btn決定.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            Btn決定.BackColor = Color.Green;
+            Btn決定.FlatAppearance.BorderSize = 0;
+            Btn決定.FlatStyle = FlatStyle.Flat;
+            Btn決定.Font = new Font("Yu Gothic UI", 12F);
+            Btn決定.ForeColor = Color.White;
+            Btn決定.Location = new Point(379, 11);
+            Btn決定.Margin = new Padding(4);
+            Btn決定.Name = "button決定";
+            Btn決定.Size = new Size(120, 40);
+            Btn決定.TabIndex = 12;
+            Btn決定.Text = "決定";
+            Btn決定.UseVisualStyleBackColor = false;
             // 
             // dataGridView
             // 
@@ -137,28 +137,28 @@ namespace WinFormsMenuDemo.Forms.Shared
             ClientSize = new Size(784, 561);
             ControlBox = false;
             Controls.Add(dataGridView);
-            Controls.Add(panelBottom);
-            Controls.Add(panelSearch);
+            Controls.Add(PanelBottom);
+            Controls.Add(PanelSearch);
             Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
             Margin = new Padding(4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form得意先一覧";
             Text = "得意先一覧";
-            panelSearch.ResumeLayout(false);
-            panelSearch.PerformLayout();
-            panelBottom.ResumeLayout(false);
+            PanelSearch.ResumeLayout(false);
+            PanelSearch.PerformLayout();
+            PanelBottom.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panelSearch;
-        private Button button検索;
-        private TextBox textBox検索;
-        private Panel panelBottom;
-        private Button buttonキャンセル;
-        private Button button決定;
+        private Panel PanelSearch;
+        private Button Btn検索;
+        private TextBox TextBox検索;
+        private Panel PanelBottom;
+        private Button Btnキャンセル;
+        private Button Btn決定;
         private SelectableGridView dataGridView;
     }
 }

@@ -28,50 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBoxトップバー色 = new TextBox();
+            TextBoxトップバー色 = new TextBox();
             label4 = new Label();
-            buttonキャンセル = new Button();
-            button保存 = new Button();
-            textBoxメニュー背景色 = new TextBox();
+            Btnキャンセル = new Button();
+            Btn保存 = new Button();
+            TextBoxメニュー背景色 = new TextBox();
             label1 = new Label();
-            textBoxグリッド見出し背景色 = new TextBox();
+            TextBoxグリッド見出し背景色 = new TextBox();
             label2 = new Label();
-            textBoxグリッド選択行背景色 = new TextBox();
+            TextBoxグリッド選択行背景色 = new TextBox();
             label3 = new Label();
-            textBoxグリッド選択行文字色 = new TextBox();
+            TextBoxグリッド選択行文字色 = new TextBox();
             label5 = new Label();
-            textBoxグリッドグラフ色 = new TextBox();
+            TextBoxグリッドグラフ色 = new TextBox();
             label6 = new Label();
-            pictureBoxトップバー色 = new PictureBox();
-            pictureBoxメニュー背景色 = new PictureBox();
-            pictureBoxグリッド見出し背景色 = new PictureBox();
-            pictureBoxグリッド選択行背景色 = new PictureBox();
-            pictureBoxグリッド選択行文字色 = new PictureBox();
-            pictureBoxグリッドグラフ色 = new PictureBox();
-            label初期値トップバー色 = new Label();
+            PictureBoxトップバー色 = new PictureBox();
+            PictureBoxメニュー背景色 = new PictureBox();
+            PictureBoxグリッド見出し背景色 = new PictureBox();
+            PictureBoxグリッド選択行背景色 = new PictureBox();
+            PictureBoxグリッド選択行文字色 = new PictureBox();
+            PictureBoxグリッドグラフ色 = new PictureBox();
+            Label初期値トップバー色 = new Label();
             label8 = new Label();
-            button全て初期値 = new Button();
-            label初期値メニュー背景色 = new Label();
-            label初期値グリッド見出し背景色 = new Label();
-            label初期値グリッド選択行背景色 = new Label();
-            label初期値グリッド選択行文字色 = new Label();
-            label初期値グリッドグラフ色 = new Label();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxトップバー色).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxメニュー背景色).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxグリッド見出し背景色).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxグリッド選択行背景色).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxグリッド選択行文字色).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxグリッドグラフ色).BeginInit();
+            Btn全て初期値 = new Button();
+            Label初期値メニュー背景色 = new Label();
+            Label初期値グリッド見出し背景色 = new Label();
+            Label初期値グリッド選択行背景色 = new Label();
+            Label初期値グリッド選択行文字色 = new Label();
+            Label初期値グリッドグラフ色 = new Label();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxトップバー色).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxメニュー背景色).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxグリッド見出し背景色).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxグリッド選択行背景色).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxグリッド選択行文字色).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxグリッドグラフ色).BeginInit();
             SuspendLayout();
             // 
             // textBoxトップバー色
             // 
-            textBoxトップバー色.Location = new Point(39, 57);
-            textBoxトップバー色.Margin = new Padding(4);
-            textBoxトップバー色.Name = "textBoxトップバー色";
-            textBoxトップバー色.Size = new Size(284, 29);
-            textBoxトップバー色.TabIndex = 7;
-            textBoxトップバー色.TextChanged += textBoxトップバー色_TextChanged;
+            TextBoxトップバー色.Location = new Point(39, 57);
+            TextBoxトップバー色.Margin = new Padding(4);
+            TextBoxトップバー色.Name = "textBoxトップバー色";
+            TextBoxトップバー色.Size = new Size(284, 29);
+            TextBoxトップバー色.TabIndex = 7;
+            TextBoxトップバー色.TextChanged += TextBoxトップバー色_TextChanged;
             // 
             // label4
             // 
@@ -87,42 +87,42 @@
             // 
             // buttonキャンセル
             // 
-            buttonキャンセル.BackColor = Color.Gray;
-            buttonキャンセル.FlatAppearance.BorderSize = 0;
-            buttonキャンセル.FlatStyle = FlatStyle.Flat;
-            buttonキャンセル.ForeColor = Color.White;
-            buttonキャンセル.Location = new Point(614, 645);
-            buttonキャンセル.Margin = new Padding(4);
-            buttonキャンセル.Name = "buttonキャンセル";
-            buttonキャンセル.Size = new Size(120, 40);
-            buttonキャンセル.TabIndex = 13;
-            buttonキャンセル.Text = "キャンセル";
-            buttonキャンセル.UseVisualStyleBackColor = false;
-            buttonキャンセル.Click += buttonキャンセル_Click;
+            Btnキャンセル.BackColor = Color.Gray;
+            Btnキャンセル.FlatAppearance.BorderSize = 0;
+            Btnキャンセル.FlatStyle = FlatStyle.Flat;
+            Btnキャンセル.ForeColor = Color.White;
+            Btnキャンセル.Location = new Point(614, 645);
+            Btnキャンセル.Margin = new Padding(4);
+            Btnキャンセル.Name = "buttonキャンセル";
+            Btnキャンセル.Size = new Size(120, 40);
+            Btnキャンセル.TabIndex = 13;
+            Btnキャンセル.Text = "キャンセル";
+            Btnキャンセル.UseVisualStyleBackColor = false;
+            Btnキャンセル.Click += Btnキャンセル_Click;
             // 
             // button保存
             // 
-            button保存.BackColor = Color.Green;
-            button保存.FlatAppearance.BorderSize = 0;
-            button保存.FlatStyle = FlatStyle.Flat;
-            button保存.ForeColor = Color.White;
-            button保存.Location = new Point(393, 642);
-            button保存.Margin = new Padding(4);
-            button保存.Name = "button保存";
-            button保存.Size = new Size(120, 40);
-            button保存.TabIndex = 12;
-            button保存.Text = "保存";
-            button保存.UseVisualStyleBackColor = false;
-            button保存.Click += button保存_Click;
+            Btn保存.BackColor = Color.Green;
+            Btn保存.FlatAppearance.BorderSize = 0;
+            Btn保存.FlatStyle = FlatStyle.Flat;
+            Btn保存.ForeColor = Color.White;
+            Btn保存.Location = new Point(393, 642);
+            Btn保存.Margin = new Padding(4);
+            Btn保存.Name = "button保存";
+            Btn保存.Size = new Size(120, 40);
+            Btn保存.TabIndex = 12;
+            Btn保存.Text = "保存";
+            Btn保存.UseVisualStyleBackColor = false;
+            Btn保存.Click += Btn保存_Click;
             // 
             // textBoxメニュー背景色
             // 
-            textBoxメニュー背景色.Location = new Point(39, 127);
-            textBoxメニュー背景色.Margin = new Padding(4);
-            textBoxメニュー背景色.Name = "textBoxメニュー背景色";
-            textBoxメニュー背景色.Size = new Size(284, 29);
-            textBoxメニュー背景色.TabIndex = 14;
-            textBoxメニュー背景色.TextChanged += textBoxメニュー背景色_TextChanged;
+            TextBoxメニュー背景色.Location = new Point(39, 127);
+            TextBoxメニュー背景色.Margin = new Padding(4);
+            TextBoxメニュー背景色.Name = "textBoxメニュー背景色";
+            TextBoxメニュー背景色.Size = new Size(284, 29);
+            TextBoxメニュー背景色.TabIndex = 14;
+            TextBoxメニュー背景色.TextChanged += TextBoxメニュー背景色_TextChanged;
             // 
             // label1
             // 
@@ -138,12 +138,12 @@
             // 
             // textBoxグリッド見出し背景色
             // 
-            textBoxグリッド見出し背景色.Location = new Point(39, 225);
-            textBoxグリッド見出し背景色.Margin = new Padding(4);
-            textBoxグリッド見出し背景色.Name = "textBoxグリッド見出し背景色";
-            textBoxグリッド見出し背景色.Size = new Size(284, 29);
-            textBoxグリッド見出し背景色.TabIndex = 16;
-            textBoxグリッド見出し背景色.TextChanged += textBoxグリッド見出し背景色_TextChanged;
+            TextBoxグリッド見出し背景色.Location = new Point(39, 225);
+            TextBoxグリッド見出し背景色.Margin = new Padding(4);
+            TextBoxグリッド見出し背景色.Name = "textBoxグリッド見出し背景色";
+            TextBoxグリッド見出し背景色.Size = new Size(284, 29);
+            TextBoxグリッド見出し背景色.TabIndex = 16;
+            TextBoxグリッド見出し背景色.TextChanged += TextBoxグリッド見出し背景色_TextChanged;
             // 
             // label2
             // 
@@ -159,12 +159,12 @@
             // 
             // textBoxグリッド選択行背景色
             // 
-            textBoxグリッド選択行背景色.Location = new Point(39, 292);
-            textBoxグリッド選択行背景色.Margin = new Padding(4);
-            textBoxグリッド選択行背景色.Name = "textBoxグリッド選択行背景色";
-            textBoxグリッド選択行背景色.Size = new Size(284, 29);
-            textBoxグリッド選択行背景色.TabIndex = 18;
-            textBoxグリッド選択行背景色.TextChanged += textBoxグリッド選択行背景色_TextChanged;
+            TextBoxグリッド選択行背景色.Location = new Point(39, 292);
+            TextBoxグリッド選択行背景色.Margin = new Padding(4);
+            TextBoxグリッド選択行背景色.Name = "textBoxグリッド選択行背景色";
+            TextBoxグリッド選択行背景色.Size = new Size(284, 29);
+            TextBoxグリッド選択行背景色.TabIndex = 18;
+            TextBoxグリッド選択行背景色.TextChanged += TextBoxグリッド選択行背景色_TextChanged;
             // 
             // label3
             // 
@@ -180,12 +180,12 @@
             // 
             // textBoxグリッド選択行文字色
             // 
-            textBoxグリッド選択行文字色.Location = new Point(39, 358);
-            textBoxグリッド選択行文字色.Margin = new Padding(4);
-            textBoxグリッド選択行文字色.Name = "textBoxグリッド選択行文字色";
-            textBoxグリッド選択行文字色.Size = new Size(284, 29);
-            textBoxグリッド選択行文字色.TabIndex = 20;
-            textBoxグリッド選択行文字色.TextChanged += textBoxグリッド選択行文字色_TextChanged;
+            TextBoxグリッド選択行文字色.Location = new Point(39, 358);
+            TextBoxグリッド選択行文字色.Margin = new Padding(4);
+            TextBoxグリッド選択行文字色.Name = "textBoxグリッド選択行文字色";
+            TextBoxグリッド選択行文字色.Size = new Size(284, 29);
+            TextBoxグリッド選択行文字色.TabIndex = 20;
+            TextBoxグリッド選択行文字色.TextChanged += TextBoxグリッド選択行文字色_TextChanged;
             // 
             // label5
             // 
@@ -201,12 +201,12 @@
             // 
             // textBoxグリッドグラフ色
             // 
-            textBoxグリッドグラフ色.Location = new Point(39, 425);
-            textBoxグリッドグラフ色.Margin = new Padding(4);
-            textBoxグリッドグラフ色.Name = "textBoxグリッドグラフ色";
-            textBoxグリッドグラフ色.Size = new Size(284, 29);
-            textBoxグリッドグラフ色.TabIndex = 22;
-            textBoxグリッドグラフ色.TextChanged += textBoxグリッドグラフ色_TextChanged;
+            TextBoxグリッドグラフ色.Location = new Point(39, 425);
+            TextBoxグリッドグラフ色.Margin = new Padding(4);
+            TextBoxグリッドグラフ色.Name = "textBoxグリッドグラフ色";
+            TextBoxグリッドグラフ色.Size = new Size(284, 29);
+            TextBoxグリッドグラフ色.TabIndex = 22;
+            TextBoxグリッドグラフ色.TextChanged += TextBoxグリッドグラフ色_TextChanged;
             // 
             // label6
             // 
@@ -222,75 +222,75 @@
             // 
             // pictureBoxトップバー色
             // 
-            pictureBoxトップバー色.BorderStyle = BorderStyle.FixedSingle;
-            pictureBoxトップバー色.Location = new Point(330, 54);
-            pictureBoxトップバー色.Name = "pictureBoxトップバー色";
-            pictureBoxトップバー色.Size = new Size(32, 32);
-            pictureBoxトップバー色.TabIndex = 24;
-            pictureBoxトップバー色.TabStop = false;
-            pictureBoxトップバー色.Click += pictureBoxトップバー色_Click;
+            PictureBoxトップバー色.BorderStyle = BorderStyle.FixedSingle;
+            PictureBoxトップバー色.Location = new Point(330, 54);
+            PictureBoxトップバー色.Name = "pictureBoxトップバー色";
+            PictureBoxトップバー色.Size = new Size(32, 32);
+            PictureBoxトップバー色.TabIndex = 24;
+            PictureBoxトップバー色.TabStop = false;
+            PictureBoxトップバー色.Click += PictureBoxトップバー色_Click;
             // 
             // pictureBoxメニュー背景色
             // 
-            pictureBoxメニュー背景色.BorderStyle = BorderStyle.FixedSingle;
-            pictureBoxメニュー背景色.Location = new Point(330, 124);
-            pictureBoxメニュー背景色.Name = "pictureBoxメニュー背景色";
-            pictureBoxメニュー背景色.Size = new Size(32, 32);
-            pictureBoxメニュー背景色.TabIndex = 25;
-            pictureBoxメニュー背景色.TabStop = false;
-            pictureBoxメニュー背景色.Click += pictureBoxメニュー背景色_Click;
+            PictureBoxメニュー背景色.BorderStyle = BorderStyle.FixedSingle;
+            PictureBoxメニュー背景色.Location = new Point(330, 124);
+            PictureBoxメニュー背景色.Name = "pictureBoxメニュー背景色";
+            PictureBoxメニュー背景色.Size = new Size(32, 32);
+            PictureBoxメニュー背景色.TabIndex = 25;
+            PictureBoxメニュー背景色.TabStop = false;
+            PictureBoxメニュー背景色.Click += PictureBoxメニュー背景色_Click;
             // 
             // pictureBoxグリッド見出し背景色
             // 
-            pictureBoxグリッド見出し背景色.BorderStyle = BorderStyle.FixedSingle;
-            pictureBoxグリッド見出し背景色.Location = new Point(330, 222);
-            pictureBoxグリッド見出し背景色.Name = "pictureBoxグリッド見出し背景色";
-            pictureBoxグリッド見出し背景色.Size = new Size(32, 32);
-            pictureBoxグリッド見出し背景色.TabIndex = 26;
-            pictureBoxグリッド見出し背景色.TabStop = false;
-            pictureBoxグリッド見出し背景色.Click += pictureBoxグリッド見出し背景色_Click;
+            PictureBoxグリッド見出し背景色.BorderStyle = BorderStyle.FixedSingle;
+            PictureBoxグリッド見出し背景色.Location = new Point(330, 222);
+            PictureBoxグリッド見出し背景色.Name = "pictureBoxグリッド見出し背景色";
+            PictureBoxグリッド見出し背景色.Size = new Size(32, 32);
+            PictureBoxグリッド見出し背景色.TabIndex = 26;
+            PictureBoxグリッド見出し背景色.TabStop = false;
+            PictureBoxグリッド見出し背景色.Click += PictureBoxグリッド見出し背景色_Click;
             // 
             // pictureBoxグリッド選択行背景色
             // 
-            pictureBoxグリッド選択行背景色.BorderStyle = BorderStyle.FixedSingle;
-            pictureBoxグリッド選択行背景色.Location = new Point(330, 289);
-            pictureBoxグリッド選択行背景色.Name = "pictureBoxグリッド選択行背景色";
-            pictureBoxグリッド選択行背景色.Size = new Size(32, 32);
-            pictureBoxグリッド選択行背景色.TabIndex = 27;
-            pictureBoxグリッド選択行背景色.TabStop = false;
-            pictureBoxグリッド選択行背景色.Click += pictureBoxグリッド選択行背景色_Click;
+            PictureBoxグリッド選択行背景色.BorderStyle = BorderStyle.FixedSingle;
+            PictureBoxグリッド選択行背景色.Location = new Point(330, 289);
+            PictureBoxグリッド選択行背景色.Name = "pictureBoxグリッド選択行背景色";
+            PictureBoxグリッド選択行背景色.Size = new Size(32, 32);
+            PictureBoxグリッド選択行背景色.TabIndex = 27;
+            PictureBoxグリッド選択行背景色.TabStop = false;
+            PictureBoxグリッド選択行背景色.Click += PictureBoxグリッド選択行背景色_Click;
             // 
             // pictureBoxグリッド選択行文字色
             // 
-            pictureBoxグリッド選択行文字色.BorderStyle = BorderStyle.FixedSingle;
-            pictureBoxグリッド選択行文字色.Location = new Point(330, 355);
-            pictureBoxグリッド選択行文字色.Name = "pictureBoxグリッド選択行文字色";
-            pictureBoxグリッド選択行文字色.Size = new Size(32, 32);
-            pictureBoxグリッド選択行文字色.TabIndex = 28;
-            pictureBoxグリッド選択行文字色.TabStop = false;
-            pictureBoxグリッド選択行文字色.Click += pictureBoxグリッド選択行文字色_Click;
+            PictureBoxグリッド選択行文字色.BorderStyle = BorderStyle.FixedSingle;
+            PictureBoxグリッド選択行文字色.Location = new Point(330, 355);
+            PictureBoxグリッド選択行文字色.Name = "pictureBoxグリッド選択行文字色";
+            PictureBoxグリッド選択行文字色.Size = new Size(32, 32);
+            PictureBoxグリッド選択行文字色.TabIndex = 28;
+            PictureBoxグリッド選択行文字色.TabStop = false;
+            PictureBoxグリッド選択行文字色.Click += PictureBoxグリッド選択行文字色_Click;
             // 
             // pictureBoxグリッドグラフ色
             // 
-            pictureBoxグリッドグラフ色.BorderStyle = BorderStyle.FixedSingle;
-            pictureBoxグリッドグラフ色.Location = new Point(330, 422);
-            pictureBoxグリッドグラフ色.Name = "pictureBoxグリッドグラフ色";
-            pictureBoxグリッドグラフ色.Size = new Size(32, 32);
-            pictureBoxグリッドグラフ色.TabIndex = 29;
-            pictureBoxグリッドグラフ色.TabStop = false;
-            pictureBoxグリッドグラフ色.Click += pictureBoxグリッドグラフ色_Click;
+            PictureBoxグリッドグラフ色.BorderStyle = BorderStyle.FixedSingle;
+            PictureBoxグリッドグラフ色.Location = new Point(330, 422);
+            PictureBoxグリッドグラフ色.Name = "pictureBoxグリッドグラフ色";
+            PictureBoxグリッドグラフ色.Size = new Size(32, 32);
+            PictureBoxグリッドグラフ色.TabIndex = 29;
+            PictureBoxグリッドグラフ色.TabStop = false;
+            PictureBoxグリッドグラフ色.Click += PictureBoxグリッドグラフ色_Click;
             // 
             // label初期値トップバー色
             // 
-            label初期値トップバー色.AutoSize = true;
-            label初期値トップバー色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label初期値トップバー色.ForeColor = Color.Black;
-            label初期値トップバー色.Location = new Point(383, 63);
-            label初期値トップバー色.Margin = new Padding(4, 0, 4, 0);
-            label初期値トップバー色.Name = "label初期値トップバー色";
-            label初期値トップバー色.Size = new Size(79, 17);
-            label初期値トップバー色.TabIndex = 30;
-            label初期値トップバー色.Text = "DarkOrange";
+            Label初期値トップバー色.AutoSize = true;
+            Label初期値トップバー色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            Label初期値トップバー色.ForeColor = Color.Black;
+            Label初期値トップバー色.Location = new Point(383, 63);
+            Label初期値トップバー色.Margin = new Padding(4, 0, 4, 0);
+            Label初期値トップバー色.Name = "label初期値トップバー色";
+            Label初期値トップバー色.Size = new Size(79, 17);
+            Label初期値トップバー色.TabIndex = 30;
+            Label初期値トップバー色.Text = "DarkOrange";
             // 
             // label8
             // 
@@ -306,156 +306,156 @@
             // 
             // button全て初期値
             // 
-            button全て初期値.BackColor = Color.LightBlue;
-            button全て初期値.FlatAppearance.BorderSize = 0;
-            button全て初期値.FlatStyle = FlatStyle.Flat;
-            button全て初期値.ForeColor = Color.Black;
-            button全て初期値.Location = new Point(39, 642);
-            button全て初期値.Margin = new Padding(4);
-            button全て初期値.Name = "button全て初期値";
-            button全て初期値.Size = new Size(120, 40);
-            button全て初期値.TabIndex = 32;
-            button全て初期値.Text = "全て初期値";
-            button全て初期値.UseVisualStyleBackColor = false;
-            button全て初期値.Click += button全て初期値_Click;
+            Btn全て初期値.BackColor = Color.LightBlue;
+            Btn全て初期値.FlatAppearance.BorderSize = 0;
+            Btn全て初期値.FlatStyle = FlatStyle.Flat;
+            Btn全て初期値.ForeColor = Color.Black;
+            Btn全て初期値.Location = new Point(39, 642);
+            Btn全て初期値.Margin = new Padding(4);
+            Btn全て初期値.Name = "button全て初期値";
+            Btn全て初期値.Size = new Size(120, 40);
+            Btn全て初期値.TabIndex = 32;
+            Btn全て初期値.Text = "全て初期値";
+            Btn全て初期値.UseVisualStyleBackColor = false;
+            Btn全て初期値.Click += Btn全て初期値_Click;
             // 
             // label初期値メニュー背景色
             // 
-            label初期値メニュー背景色.AutoSize = true;
-            label初期値メニュー背景色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label初期値メニュー背景色.ForeColor = Color.Black;
-            label初期値メニュー背景色.Location = new Point(383, 133);
-            label初期値メニュー背景色.Margin = new Padding(4, 0, 4, 0);
-            label初期値メニュー背景色.Name = "label初期値メニュー背景色";
-            label初期値メニュー背景色.Size = new Size(64, 17);
-            label初期値メニュー背景色.TabIndex = 33;
-            label初期値メニュー背景色.Text = "64, 64, 64";
+            Label初期値メニュー背景色.AutoSize = true;
+            Label初期値メニュー背景色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            Label初期値メニュー背景色.ForeColor = Color.Black;
+            Label初期値メニュー背景色.Location = new Point(383, 133);
+            Label初期値メニュー背景色.Margin = new Padding(4, 0, 4, 0);
+            Label初期値メニュー背景色.Name = "label初期値メニュー背景色";
+            Label初期値メニュー背景色.Size = new Size(64, 17);
+            Label初期値メニュー背景色.TabIndex = 33;
+            Label初期値メニュー背景色.Text = "64, 64, 64";
             // 
             // label初期値グリッド見出し背景色
             // 
-            label初期値グリッド見出し背景色.AutoSize = true;
-            label初期値グリッド見出し背景色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label初期値グリッド見出し背景色.ForeColor = Color.Black;
-            label初期値グリッド見出し背景色.Location = new Point(383, 231);
-            label初期値グリッド見出し背景色.Margin = new Padding(4, 0, 4, 0);
-            label初期値グリッド見出し背景色.Name = "label初期値グリッド見出し背景色";
-            label初期値グリッド見出し背景色.Size = new Size(84, 17);
-            label初期値グリッド見出し背景色.TabIndex = 34;
-            label初期値グリッド見出し背景色.Text = "MidnightBlue";
+            Label初期値グリッド見出し背景色.AutoSize = true;
+            Label初期値グリッド見出し背景色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            Label初期値グリッド見出し背景色.ForeColor = Color.Black;
+            Label初期値グリッド見出し背景色.Location = new Point(383, 231);
+            Label初期値グリッド見出し背景色.Margin = new Padding(4, 0, 4, 0);
+            Label初期値グリッド見出し背景色.Name = "label初期値グリッド見出し背景色";
+            Label初期値グリッド見出し背景色.Size = new Size(84, 17);
+            Label初期値グリッド見出し背景色.TabIndex = 34;
+            Label初期値グリッド見出し背景色.Text = "MidnightBlue";
             // 
             // label初期値グリッド選択行背景色
             // 
-            label初期値グリッド選択行背景色.AutoSize = true;
-            label初期値グリッド選択行背景色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label初期値グリッド選択行背景色.ForeColor = Color.Black;
-            label初期値グリッド選択行背景色.Location = new Point(383, 298);
-            label初期値グリッド選択行背景色.Margin = new Padding(4, 0, 4, 0);
-            label初期値グリッド選択行背景色.Name = "label初期値グリッド選択行背景色";
-            label初期値グリッド選択行背景色.Size = new Size(85, 17);
-            label初期値グリッド選択行背景色.TabIndex = 35;
-            label初期値グリッド選択行背景色.Text = "255, 215, 166";
+            Label初期値グリッド選択行背景色.AutoSize = true;
+            Label初期値グリッド選択行背景色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            Label初期値グリッド選択行背景色.ForeColor = Color.Black;
+            Label初期値グリッド選択行背景色.Location = new Point(383, 298);
+            Label初期値グリッド選択行背景色.Margin = new Padding(4, 0, 4, 0);
+            Label初期値グリッド選択行背景色.Name = "label初期値グリッド選択行背景色";
+            Label初期値グリッド選択行背景色.Size = new Size(85, 17);
+            Label初期値グリッド選択行背景色.TabIndex = 35;
+            Label初期値グリッド選択行背景色.Text = "255, 215, 166";
             // 
             // label初期値グリッド選択行文字色
             // 
-            label初期値グリッド選択行文字色.AutoSize = true;
-            label初期値グリッド選択行文字色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label初期値グリッド選択行文字色.ForeColor = Color.Black;
-            label初期値グリッド選択行文字色.Location = new Point(383, 364);
-            label初期値グリッド選択行文字色.Margin = new Padding(4, 0, 4, 0);
-            label初期値グリッド選択行文字色.Name = "label初期値グリッド選択行文字色";
-            label初期値グリッド選択行文字色.Size = new Size(37, 17);
-            label初期値グリッド選択行文字色.TabIndex = 36;
-            label初期値グリッド選択行文字色.Text = "Black";
+            Label初期値グリッド選択行文字色.AutoSize = true;
+            Label初期値グリッド選択行文字色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            Label初期値グリッド選択行文字色.ForeColor = Color.Black;
+            Label初期値グリッド選択行文字色.Location = new Point(383, 364);
+            Label初期値グリッド選択行文字色.Margin = new Padding(4, 0, 4, 0);
+            Label初期値グリッド選択行文字色.Name = "label初期値グリッド選択行文字色";
+            Label初期値グリッド選択行文字色.Size = new Size(37, 17);
+            Label初期値グリッド選択行文字色.TabIndex = 36;
+            Label初期値グリッド選択行文字色.Text = "Black";
             // 
             // label初期値グリッドグラフ色
             // 
-            label初期値グリッドグラフ色.AutoSize = true;
-            label初期値グリッドグラフ色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label初期値グリッドグラフ色.ForeColor = Color.Black;
-            label初期値グリッドグラフ色.Location = new Point(383, 431);
-            label初期値グリッドグラフ色.Margin = new Padding(4, 0, 4, 0);
-            label初期値グリッドグラフ色.Name = "label初期値グリッドグラフ色";
-            label初期値グリッドグラフ色.Size = new Size(71, 17);
-            label初期値グリッドグラフ色.TabIndex = 37;
-            label初期値グリッドグラフ色.Text = "LightGreen";
+            Label初期値グリッドグラフ色.AutoSize = true;
+            Label初期値グリッドグラフ色.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            Label初期値グリッドグラフ色.ForeColor = Color.Black;
+            Label初期値グリッドグラフ色.Location = new Point(383, 431);
+            Label初期値グリッドグラフ色.Margin = new Padding(4, 0, 4, 0);
+            Label初期値グリッドグラフ色.Name = "label初期値グリッドグラフ色";
+            Label初期値グリッドグラフ色.Size = new Size(71, 17);
+            Label初期値グリッドグラフ色.TabIndex = 37;
+            Label初期値グリッドグラフ色.Text = "LightGreen";
             // 
             // Form設定
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1200, 745);
-            Controls.Add(label初期値グリッドグラフ色);
-            Controls.Add(label初期値グリッド選択行文字色);
-            Controls.Add(label初期値グリッド選択行背景色);
-            Controls.Add(label初期値グリッド見出し背景色);
-            Controls.Add(label初期値メニュー背景色);
-            Controls.Add(button全て初期値);
+            Controls.Add(Label初期値グリッドグラフ色);
+            Controls.Add(Label初期値グリッド選択行文字色);
+            Controls.Add(Label初期値グリッド選択行背景色);
+            Controls.Add(Label初期値グリッド見出し背景色);
+            Controls.Add(Label初期値メニュー背景色);
+            Controls.Add(Btn全て初期値);
             Controls.Add(label8);
-            Controls.Add(label初期値トップバー色);
-            Controls.Add(pictureBoxグリッドグラフ色);
-            Controls.Add(pictureBoxグリッド選択行文字色);
-            Controls.Add(pictureBoxグリッド選択行背景色);
-            Controls.Add(pictureBoxグリッド見出し背景色);
-            Controls.Add(pictureBoxメニュー背景色);
-            Controls.Add(pictureBoxトップバー色);
-            Controls.Add(textBoxグリッドグラフ色);
+            Controls.Add(Label初期値トップバー色);
+            Controls.Add(PictureBoxグリッドグラフ色);
+            Controls.Add(PictureBoxグリッド選択行文字色);
+            Controls.Add(PictureBoxグリッド選択行背景色);
+            Controls.Add(PictureBoxグリッド見出し背景色);
+            Controls.Add(PictureBoxメニュー背景色);
+            Controls.Add(PictureBoxトップバー色);
+            Controls.Add(TextBoxグリッドグラフ色);
             Controls.Add(label6);
-            Controls.Add(textBoxグリッド選択行文字色);
+            Controls.Add(TextBoxグリッド選択行文字色);
             Controls.Add(label5);
-            Controls.Add(textBoxグリッド選択行背景色);
+            Controls.Add(TextBoxグリッド選択行背景色);
             Controls.Add(label3);
-            Controls.Add(textBoxグリッド見出し背景色);
+            Controls.Add(TextBoxグリッド見出し背景色);
             Controls.Add(label2);
-            Controls.Add(textBoxメニュー背景色);
+            Controls.Add(TextBoxメニュー背景色);
             Controls.Add(label1);
-            Controls.Add(buttonキャンセル);
-            Controls.Add(button保存);
-            Controls.Add(textBoxトップバー色);
+            Controls.Add(Btnキャンセル);
+            Controls.Add(Btn保存);
+            Controls.Add(TextBoxトップバー色);
             Controls.Add(label4);
             Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4);
             Name = "Form設定";
             Text = "Form設定";
-            ((System.ComponentModel.ISupportInitialize)pictureBoxトップバー色).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxメニュー背景色).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxグリッド見出し背景色).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxグリッド選択行背景色).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxグリッド選択行文字色).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxグリッドグラフ色).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxトップバー色).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxメニュー背景色).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxグリッド見出し背景色).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxグリッド選択行背景色).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxグリッド選択行文字色).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxグリッドグラフ色).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBoxトップバー色;
+        private TextBox TextBoxトップバー色;
         private Label label4;
-        private Button buttonキャンセル;
-        private Button button保存;
-        private TextBox textBoxメニュー背景色;
+        private Button Btnキャンセル;
+        private Button Btn保存;
+        private TextBox TextBoxメニュー背景色;
         private Label label1;
-        private TextBox textBoxグリッド見出し背景色;
+        private TextBox TextBoxグリッド見出し背景色;
         private Label label2;
-        private TextBox textBoxグリッド選択行背景色;
+        private TextBox TextBoxグリッド選択行背景色;
         private Label label3;
-        private TextBox textBoxグリッド選択行文字色;
+        private TextBox TextBoxグリッド選択行文字色;
         private Label label5;
-        private TextBox textBoxグリッドグラフ色;
+        private TextBox TextBoxグリッドグラフ色;
         private Label label6;
-        private PictureBox pictureBoxトップバー色;
-        private PictureBox pictureBoxメニュー背景色;
-        private PictureBox pictureBoxグリッド見出し背景色;
-        private PictureBox pictureBoxグリッド選択行背景色;
-        private PictureBox pictureBoxグリッド選択行文字色;
-        private PictureBox pictureBoxグリッドグラフ色;
-        private Label label初期値トップバー色;
+        private PictureBox PictureBoxトップバー色;
+        private PictureBox PictureBoxメニュー背景色;
+        private PictureBox PictureBoxグリッド見出し背景色;
+        private PictureBox PictureBoxグリッド選択行背景色;
+        private PictureBox PictureBoxグリッド選択行文字色;
+        private PictureBox PictureBoxグリッドグラフ色;
+        private Label Label初期値トップバー色;
         private Label label8;
-        private Button button全て初期値;
-        private Label label初期値メニュー背景色;
-        private Label label初期値グリッド見出し背景色;
-        private Label label初期値グリッド選択行背景色;
-        private Label label初期値グリッド選択行文字色;
-        private Label label初期値グリッドグラフ色;
+        private Button Btn全て初期値;
+        private Label Label初期値メニュー背景色;
+        private Label Label初期値グリッド見出し背景色;
+        private Label Label初期値グリッド選択行背景色;
+        private Label Label初期値グリッド選択行文字色;
+        private Label Label初期値グリッドグラフ色;
     }
 }
