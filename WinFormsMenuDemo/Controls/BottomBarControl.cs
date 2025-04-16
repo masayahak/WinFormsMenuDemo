@@ -5,6 +5,15 @@ namespace WinFormsMenuDemo.Controls
 {
     public partial class BottomBarControl : UserControl
     {
+        [LibraryImport("user32.dll", EntryPoint = "ReleaseCapture")]
+        private static partial void ReleaseCapture();
+
+        [LibraryImport("user32.dll", EntryPoint = "SendMessage", StringMarshalling = StringMarshalling.Utf16)]
+        private static partial IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+
+        private const int WM_NCLBUTTONDOWN = 0xA1;
+        private const int HTBOTTOMRIGHT = 17;
+
         public BottomBarControl()
         {
             InitializeComponent();
@@ -36,14 +45,5 @@ namespace WinFormsMenuDemo.Controls
                 }
             }
         }
-
-        [LibraryImport("user32.dll")]
-        private static partial void ReleaseCapture();
-
-        [LibraryImport("user32.dll")]
-        private static partial IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
-
-        private const int WM_NCLBUTTONDOWN = 0xA1;
-        private const int HTBOTTOMRIGHT = 17;
     }
 }

@@ -5,6 +5,15 @@ namespace WinFormsMenuDemo.Controls
 {
     public partial class TopBarControl : UserControl, Iテーマ適用可能
     {
+        [LibraryImport("user32.dll", EntryPoint = "ReleaseCapture")]
+        private static partial void ReleaseCapture();
+
+        [LibraryImport("user32.dll", EntryPoint = "SendMessage", StringMarshalling = StringMarshalling.Utf16)]
+        private static partial IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+
+        private const int WM_NCLBUTTONDOWN = 0xA1;
+        private const int HTCAPTION = 0x2;
+
         public TopBarControl()
         {
             InitializeComponent();
@@ -110,16 +119,6 @@ namespace WinFormsMenuDemo.Controls
                 SendMessage(this.FindForm()!.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
         }
-
-        [LibraryImport("user32.dll")]
-        private static partial void ReleaseCapture();
-
-        [LibraryImport("user32.dll")]
-        private static partial IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
-
-        private const int WM_NCLBUTTONDOWN = 0xA1;
-        private const int HTCAPTION = 0x2;
-
 
         private void BtnMin_Click(object sender, EventArgs e)
         {

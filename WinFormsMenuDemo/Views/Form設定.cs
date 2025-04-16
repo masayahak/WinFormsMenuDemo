@@ -1,4 +1,6 @@
-﻿using WinFormsMenuDemo.Controls;
+﻿using System.Windows.Forms;
+using WinFormsMenuDemo.Common;
+using WinFormsMenuDemo.Controls;
 
 namespace WinFormsMenuDemo.Views
 {
@@ -48,6 +50,9 @@ namespace WinFormsMenuDemo.Views
             {
                 IsSuccessful = false;
                 Message = $"エラーが発生しました: {ex.Message}";
+
+                ErrorLogger.Log(ex, this);
+
                 return;
             }
             IsSuccessful = true;
