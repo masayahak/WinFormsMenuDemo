@@ -1,4 +1,5 @@
-﻿using WinFormsMenuDemo.Models;
+﻿using WinFormsMenuDemo.Common;
+using WinFormsMenuDemo.Models;
 using WinFormsMenuDemo.Repositories;
 using WinFormsMenuDemo.Views;
 
@@ -165,6 +166,8 @@ namespace WinFormsMenuDemo.Presenters
             {
                 _view.IsSuccessful = false;
                 _view.Message = ex.Message;
+
+                ErrorLogger.Log(ex, (Form)_view);
             }
         }
 
@@ -208,6 +211,8 @@ namespace WinFormsMenuDemo.Presenters
             {
                 _view.IsSuccessful = false;
                 _view.Message = ex.Message;
+
+                ErrorLogger.Log(ex, (Form)_view);
             }
 
         }

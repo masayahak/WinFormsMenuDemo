@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using WinFormsMenuDemo.Common;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace WinFormsMenuDemo.Controls
@@ -42,7 +43,9 @@ namespace WinFormsMenuDemo.Controls
             catch (Exception ex)
             {
                 MessageBox.Show("Excel出力エラー: " + ex.Message);
+                ErrorLogger.Log(ex, this);
             }
+
             finally
             {
                 if (sheet != null) Marshal.ReleaseComObject(sheet);
