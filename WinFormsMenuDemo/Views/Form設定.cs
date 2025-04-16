@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using WinFormsMenuDemo.Common;
+﻿using WinFormsMenuDemo.Common;
 using WinFormsMenuDemo.Controls;
 
 namespace WinFormsMenuDemo.Views

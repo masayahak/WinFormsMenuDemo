@@ -24,6 +24,7 @@
             this.LblTitle.Size = new System.Drawing.Size(100, 21);
             this.LblTitle.TabIndex = 0;
             this.LblTitle.Text = "アプリタイトル";
+            this.LblTitle.BackColor = System.Drawing.Color.Transparent;
             // 
             // btnMin
             // 
@@ -35,6 +36,7 @@
             this.BtnMin.TabIndex = 1;
             this.BtnMin.UseVisualStyleBackColor = true;
             this.BtnMin.Click += new System.EventHandler(this.BtnMin_Click);
+            this.BtnMin.BackColor = System.Drawing.Color.Transparent;
             // 
             // btnMax
             // 
@@ -46,6 +48,7 @@
             this.BtnMax.TabIndex = 2;
             this.BtnMax.UseVisualStyleBackColor = true;
             this.BtnMax.Click += new System.EventHandler(this.BtnMax_Click);
+            this.BtnMax.BackColor = System.Drawing.Color.Transparent;
             // 
             // btnClose
             // 
@@ -57,6 +60,7 @@
             this.BtnClose.TabIndex = 3;
             this.BtnClose.UseVisualStyleBackColor = true;
             this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.BtnClose.BackColor = System.Drawing.Color.Transparent;
             // 
             // TopBarControl
             // 

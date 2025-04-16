@@ -1,5 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using System.Configuration;
+﻿using System.Configuration;
+using System.Runtime.CompilerServices;
 using WinFormsMenuDemo.Models;
 using WinFormsMenuDemo.Repositories;
 

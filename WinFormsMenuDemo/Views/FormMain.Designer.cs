@@ -32,7 +32,7 @@
             PanelMenu = new Panel();
             Btn障害ログ = new Button();
             Btn設定 = new Button();
-            Btnログアウト = new Button();
+            Btn終了 = new Button();
             Panelマスター = new Panel();
             Btn製品 = new Button();
             Btn得意先 = new Button();
@@ -56,7 +56,7 @@
             PanelMenu.BackColor = Color.FromArgb(64, 64, 64);
             PanelMenu.Controls.Add(Btn障害ログ);
             PanelMenu.Controls.Add(Btn設定);
-            PanelMenu.Controls.Add(Btnログアウト);
+            PanelMenu.Controls.Add(Btn終了);
             PanelMenu.Controls.Add(Panelマスター);
             PanelMenu.Controls.Add(Btnマスター);
             PanelMenu.Controls.Add(Btn受注);
@@ -112,27 +112,27 @@
             Btn設定.UseVisualStyleBackColor = false;
             Btn設定.Click += Btn設定_Click;
             // 
-            // Btnログアウト
+            // Btn終了
             // 
-            Btnログアウト.BackColor = Color.FromArgb(64, 64, 64);
-            Btnログアウト.BackgroundImageLayout = ImageLayout.Zoom;
-            Btnログアウト.Dock = DockStyle.Bottom;
-            Btnログアウト.FlatAppearance.BorderSize = 0;
-            Btnログアウト.FlatAppearance.MouseOverBackColor = Color.Gray;
-            Btnログアウト.FlatStyle = FlatStyle.Flat;
-            Btnログアウト.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 128);
-            Btnログアウト.ForeColor = Color.White;
-            Btnログアウト.Image = Properties.Resources.box_arrow_left;
-            Btnログアウト.ImageAlign = ContentAlignment.MiddleLeft;
-            Btnログアウト.Location = new Point(0, 720);
-            Btnログアウト.Margin = new Padding(4);
-            Btnログアウト.Name = "Btnログアウト";
-            Btnログアウト.Padding = new Padding(6, 0, 0, 0);
-            Btnログアウト.Size = new Size(200, 50);
-            Btnログアウト.TabIndex = 10;
-            Btnログアウト.Text = "ログアウト";
-            Btnログアウト.UseVisualStyleBackColor = false;
-            Btnログアウト.Click += Btnログアウト_Click;
+            Btn終了.BackColor = Color.FromArgb(64, 64, 64);
+            Btn終了.BackgroundImageLayout = ImageLayout.Zoom;
+            Btn終了.Dock = DockStyle.Bottom;
+            Btn終了.FlatAppearance.BorderSize = 0;
+            Btn終了.FlatAppearance.MouseOverBackColor = Color.Gray;
+            Btn終了.FlatStyle = FlatStyle.Flat;
+            Btn終了.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            Btn終了.ForeColor = Color.White;
+            Btn終了.Image = Properties.Resources.box_arrow_left;
+            Btn終了.ImageAlign = ContentAlignment.MiddleLeft;
+            Btn終了.Location = new Point(0, 720);
+            Btn終了.Margin = new Padding(4);
+            Btn終了.Name = "Btn終了";
+            Btn終了.Padding = new Padding(6, 0, 0, 0);
+            Btn終了.Size = new Size(200, 50);
+            Btn終了.TabIndex = 10;
+            Btn終了.Text = "終了";
+            Btn終了.UseVisualStyleBackColor = false;
+            Btn終了.Click += Btn終了_Click;
             // 
             // Panelマスター
             // 
@@ -297,7 +297,6 @@
             PanelBottom.BackColor = Color.Gray;
             PanelBottom.Dock = DockStyle.Bottom;
             PanelBottom.Location = new Point(200, 775);
-            PanelBottom.MessageText = "08:56 08:49 ";
             PanelBottom.Name = "PanelBottom";
             PanelBottom.Size = new Size(1200, 25);
             PanelBottom.TabIndex = 0;
@@ -352,7 +351,7 @@
         private Button Btn得意先;
         private Button Btnマスター;
         private Button Btn設定;
-        private Button Btnログアウト;
+        private Button Btn終了;
         private Panel Panelロゴ;
         private PictureBox PictureBox;
         private Label label3;

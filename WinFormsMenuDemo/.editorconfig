@@ -286,6 +286,8 @@ dotnet_diagnostic.IDE0150.severity = none
 dotnet_diagnostic.IDE0305.severity = none
 dotnet_diagnostic.CA1806.severity = none
 dotnet_diagnostic.CA1822.severity = none
+dotnet_diagnostic.SYSLIB1054.severity = none
+
 
 [*.{cs,vb}]
 tab_width = 4

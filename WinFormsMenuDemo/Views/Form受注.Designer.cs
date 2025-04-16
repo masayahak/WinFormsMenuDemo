@@ -61,7 +61,7 @@ namespace WinFormsMenuDemo.Views
             TabPage受注登録.SuspendLayout();
             SuspendLayout();
             // 
-            // tabControl
+            // TabControl
             // 
             TabControl.Controls.Add(TabPage受注一覧);
             TabControl.Controls.Add(TabPage受注登録);
@@ -69,34 +69,35 @@ namespace WinFormsMenuDemo.Views
             TabControl.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
             TabControl.Location = new Point(0, 0);
             TabControl.Margin = new Padding(0);
-            TabControl.Name = "tabControl";
+            TabControl.Name = "TabControl";
             TabControl.SelectedIndex = 0;
             TabControl.Size = new Size(1200, 745);
             TabControl.TabIndex = 3;
             // 
-            // tabPage受注一覧
+            // TabPage受注一覧
             // 
             TabPage受注一覧.BackColor = Color.Transparent;
             TabPage受注一覧.Controls.Add(DataGridView);
             TabPage受注一覧.Controls.Add(PanelTop);
             TabPage受注一覧.Location = new Point(4, 30);
             TabPage受注一覧.Margin = new Padding(4);
-            TabPage受注一覧.Name = "tabPage受注一覧";
+            TabPage受注一覧.Name = "TabPage受注一覧";
             TabPage受注一覧.Padding = new Padding(4);
             TabPage受注一覧.Size = new Size(1192, 711);
             TabPage受注一覧.TabIndex = 0;
             TabPage受注一覧.Text = "受注一覧";
             // 
-            // dataGridView
+            // DataGridView
             // 
+            DataGridView.BarGraphColumnName = null;
             DataGridView.DataSource = null;
             DataGridView.Dock = DockStyle.Fill;
             DataGridView.Location = new Point(4, 54);
-            DataGridView.Name = "dataGridView";
+            DataGridView.Name = "DataGridView";
             DataGridView.Size = new Size(1184, 653);
             DataGridView.TabIndex = 3;
             // 
-            // panelTop
+            // PanelTop
             // 
             PanelTop.BackColor = Color.WhiteSmoke;
             PanelTop.Controls.Add(BtnExcel);
@@ -106,29 +107,30 @@ namespace WinFormsMenuDemo.Views
             PanelTop.Dock = DockStyle.Top;
             PanelTop.Location = new Point(4, 4);
             PanelTop.Margin = new Padding(4);
-            PanelTop.Name = "panelTop";
+            PanelTop.Name = "PanelTop";
             PanelTop.Size = new Size(1184, 50);
             PanelTop.TabIndex = 2;
             // 
-            // buttonExcel
+            // BtnExcel
             // 
+            BtnExcel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             BtnExcel.Image = Properties.Resources.Excel;
             BtnExcel.Location = new Point(1138, 9);
-            BtnExcel.Name = "buttonExcel";
+            BtnExcel.Name = "BtnExcel";
             BtnExcel.Size = new Size(32, 32);
             BtnExcel.TabIndex = 8;
             BtnExcel.TargetGrid = DataGridView;
             BtnExcel.UseVisualStyleBackColor = true;
             // 
-            // textBox検索
+            // TextBox検索
             // 
             TextBox検索.Location = new Point(13, 12);
-            TextBox検索.Name = "textBox検索";
+            TextBox検索.Name = "TextBox検索";
             TextBox検索.PlaceholderText = "受注Id(数値)   または  得意先名の一部を入力";
             TextBox検索.Size = new Size(475, 29);
             TextBox検索.TabIndex = 7;
             // 
-            // button追加
+            // Btn追加
             // 
             Btn追加.BackColor = Color.DeepSkyBlue;
             Btn追加.FlatAppearance.BorderSize = 0;
@@ -136,26 +138,26 @@ namespace WinFormsMenuDemo.Views
             Btn追加.ForeColor = Color.Black;
             Btn追加.Location = new Point(672, 12);
             Btn追加.Margin = new Padding(4);
-            Btn追加.Name = "button追加";
+            Btn追加.Name = "Btn追加";
             Btn追加.Size = new Size(120, 30);
             Btn追加.TabIndex = 5;
             Btn追加.Text = "追加";
             Btn追加.UseVisualStyleBackColor = false;
             // 
-            // button検索
+            // Btn検索
             // 
             Btn検索.BackColor = Color.LightBlue;
             Btn検索.FlatAppearance.BorderSize = 0;
             Btn検索.FlatStyle = FlatStyle.Flat;
             Btn検索.Location = new Point(495, 12);
             Btn検索.Margin = new Padding(4);
-            Btn検索.Name = "button検索";
+            Btn検索.Name = "Btn検索";
             Btn検索.Size = new Size(73, 30);
             Btn検索.TabIndex = 2;
             Btn検索.Text = "検索";
             Btn検索.UseVisualStyleBackColor = false;
             // 
-            // tabPage受注登録
+            // TabPage受注登録
             // 
             TabPage受注登録.BackColor = Color.Transparent;
             TabPage受注登録.Controls.Add(TextBox得意先Id);
@@ -176,36 +178,36 @@ namespace WinFormsMenuDemo.Views
             TabPage受注登録.Controls.Add(label1);
             TabPage受注登録.Location = new Point(4, 30);
             TabPage受注登録.Margin = new Padding(4);
-            TabPage受注登録.Name = "tabPage受注登録";
+            TabPage受注登録.Name = "TabPage受注登録";
             TabPage受注登録.Padding = new Padding(4);
-            TabPage受注登録.Size = new Size(1232, 716);
+            TabPage受注登録.Size = new Size(1192, 711);
             TabPage受注登録.TabIndex = 1;
             TabPage受注登録.Text = "受注登録";
             // 
-            // textBox得意先Id
+            // TextBox得意先Id
             // 
             TextBox得意先Id.Location = new Point(37, 141);
             TextBox得意先Id.Margin = new Padding(4);
-            TextBox得意先Id.Name = "textBox得意先Id";
+            TextBox得意先Id.Name = "TextBox得意先Id";
             TextBox得意先Id.ReadOnly = true;
             TextBox得意先Id.Size = new Size(81, 29);
             TextBox得意先Id.TabIndex = 15;
             TextBox得意先Id.TabStop = false;
             // 
-            // button得意先検索
+            // Btn得意先検索
             // 
             Btn得意先検索.BackColor = Color.LightBlue;
             Btn得意先検索.FlatAppearance.BorderSize = 0;
             Btn得意先検索.FlatStyle = FlatStyle.Flat;
             Btn得意先検索.Location = new Point(593, 139);
             Btn得意先検索.Margin = new Padding(4);
-            Btn得意先検索.Name = "button得意先検索";
+            Btn得意先検索.Name = "Btn得意先検索";
             Btn得意先検索.Size = new Size(73, 30);
             Btn得意先検索.TabIndex = 14;
             Btn得意先検索.Text = "検索";
             Btn得意先検索.UseVisualStyleBackColor = false;
             // 
-            // button削除
+            // Btn削除
             // 
             Btn削除.BackColor = Color.FromArgb(192, 0, 0);
             Btn削除.FlatAppearance.BorderSize = 0;
@@ -213,24 +215,24 @@ namespace WinFormsMenuDemo.Views
             Btn削除.ForeColor = Color.White;
             Btn削除.Location = new Point(31, 618);
             Btn削除.Margin = new Padding(4);
-            Btn削除.Name = "button削除";
+            Btn削除.Name = "Btn削除";
             Btn削除.Size = new Size(120, 40);
             Btn削除.TabIndex = 13;
             Btn削除.Text = "削除";
             Btn削除.UseVisualStyleBackColor = false;
             // 
-            // checkBox売上済み
+            // CheckBox売上済み
             // 
             CheckBox売上済み.AutoSize = true;
             CheckBox売上済み.Location = new Point(253, 49);
             CheckBox売上済み.Margin = new Padding(4);
-            CheckBox売上済み.Name = "checkBox売上済み";
+            CheckBox売上済み.Name = "CheckBox売上済み";
             CheckBox売上済み.Size = new Size(91, 25);
             CheckBox売上済み.TabIndex = 12;
             CheckBox売上済み.Text = "売上済み";
             CheckBox売上済み.UseVisualStyleBackColor = true;
             // 
-            // buttonキャンセル
+            // Btnキャンセル
             // 
             Btnキャンセル.BackColor = Color.Gray;
             Btnキャンセル.FlatAppearance.BorderSize = 0;
@@ -238,13 +240,13 @@ namespace WinFormsMenuDemo.Views
             Btnキャンセル.ForeColor = Color.White;
             Btnキャンセル.Location = new Point(593, 618);
             Btnキャンセル.Margin = new Padding(4);
-            Btnキャンセル.Name = "buttonキャンセル";
+            Btnキャンセル.Name = "Btnキャンセル";
             Btnキャンセル.Size = new Size(120, 40);
             Btnキャンセル.TabIndex = 11;
             Btnキャンセル.Text = "キャンセル";
             Btnキャンセル.UseVisualStyleBackColor = false;
             // 
-            // button保存
+            // Btn保存
             // 
             Btn保存.BackColor = Color.Green;
             Btn保存.FlatAppearance.BorderSize = 0;
@@ -252,18 +254,18 @@ namespace WinFormsMenuDemo.Views
             Btn保存.ForeColor = Color.White;
             Btn保存.Location = new Point(372, 615);
             Btn保存.Margin = new Padding(4);
-            Btn保存.Name = "button保存";
+            Btn保存.Name = "Btn保存";
             Btn保存.Size = new Size(120, 40);
             Btn保存.TabIndex = 10;
             Btn保存.Text = "保存";
             Btn保存.UseVisualStyleBackColor = false;
             // 
-            // textBox備考
+            // TextBox備考
             // 
             TextBox備考.Location = new Point(33, 375);
             TextBox備考.Margin = new Padding(4);
             TextBox備考.Multiline = true;
-            TextBox備考.Name = "textBox備考";
+            TextBox備考.Name = "TextBox備考";
             TextBox備考.Size = new Size(685, 182);
             TextBox備考.TabIndex = 9;
             // 
@@ -278,11 +280,11 @@ namespace WinFormsMenuDemo.Views
             label5.TabIndex = 8;
             label5.Text = "備考";
             // 
-            // textBox合計金額
+            // TextBox合計金額
             // 
             TextBox合計金額.Location = new Point(397, 255);
             TextBox合計金額.Margin = new Padding(4);
-            TextBox合計金額.Name = "textBox合計金額";
+            TextBox合計金額.Name = "TextBox合計金額";
             TextBox合計金額.Size = new Size(172, 29);
             TextBox合計金額.TabIndex = 7;
             // 
@@ -298,11 +300,11 @@ namespace WinFormsMenuDemo.Views
             label4.TabIndex = 6;
             label4.Text = "合計金額";
             // 
-            // textBox受注日
+            // TextBox受注日
             // 
             TextBox受注日.Location = new Point(37, 255);
             TextBox受注日.Margin = new Padding(4);
-            TextBox受注日.Name = "textBox受注日";
+            TextBox受注日.Name = "TextBox受注日";
             TextBox受注日.Size = new Size(172, 29);
             TextBox受注日.TabIndex = 5;
             // 
@@ -318,11 +320,11 @@ namespace WinFormsMenuDemo.Views
             label3.TabIndex = 4;
             label3.Text = "受注日";
             // 
-            // textBox得意先名
+            // TextBox得意先名
             // 
             TextBox得意先名.Location = new Point(132, 142);
             TextBox得意先名.Margin = new Padding(4);
-            TextBox得意先名.Name = "textBox得意先名";
+            TextBox得意先名.Name = "TextBox得意先名";
             TextBox得意先名.ReadOnly = true;
             TextBox得意先名.Size = new Size(448, 29);
             TextBox得意先名.TabIndex = 3;
@@ -340,11 +342,11 @@ namespace WinFormsMenuDemo.Views
             label2.TabIndex = 2;
             label2.Text = "得意先";
             // 
-            // textBox受注Id
+            // TextBox受注Id
             // 
             TextBox受注Id.Location = new Point(37, 49);
             TextBox受注Id.Margin = new Padding(4);
-            TextBox受注Id.Name = "textBox受注Id";
+            TextBox受注Id.Name = "TextBox受注Id";
             TextBox受注Id.ReadOnly = true;
             TextBox受注Id.Size = new Size(172, 29);
             TextBox受注Id.TabIndex = 1;

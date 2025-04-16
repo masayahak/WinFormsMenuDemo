@@ -5,11 +5,11 @@ namespace WinFormsMenuDemo.Controls
 {
     public partial class TopBarControl : UserControl, Iテーマ適用可能
     {
-        [LibraryImport("user32.dll", EntryPoint = "ReleaseCapture")]
-        private static partial void ReleaseCapture();
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
-        [LibraryImport("user32.dll", EntryPoint = "SendMessage", StringMarshalling = StringMarshalling.Utf16)]
-        private static partial IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        private static extern bool ReleaseCapture();
 
         private const int WM_NCLBUTTONDOWN = 0xA1;
         private const int HTCAPTION = 0x2;
@@ -76,10 +76,6 @@ namespace WinFormsMenuDemo.Controls
         private void ApplyThemeColor(Color color)
         {
             this.BackColor = color;
-            LblTitle.BackColor = color;
-            BtnMin.BackColor = color;
-            BtnMax.BackColor = color;
-            BtnClose.BackColor = color;
         }
 
         private void TopBarControl_Layout(object? sender, EventArgs e)

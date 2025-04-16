@@ -85,7 +85,7 @@ namespace WinFormsMenuDemo.Repositories
                 command.CommandText = @"delete from T受注
                                             where 受注Id = @受注Id
                                               and Version = @Version; ";
-                command.Parameters.Add("@受注Id", SqlDbType.Int).Value = model.得意先Id;
+                command.Parameters.Add("@受注Id", SqlDbType.Int).Value = model.受注Id;
                 command.Parameters.Add("@Version", SqlDbType.Int).Value = model.Version;
                 int deleteCount = command.ExecuteNonQuery();
                 if (deleteCount == 0)

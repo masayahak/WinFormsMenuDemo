@@ -26,8 +26,8 @@ namespace WinFormsMenuDemo.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DSK-MAS-01\\SQLEXPRESS;Initial Catalog=MenuDemo;Integrated Security=Tr" +
-            "ue;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PC-MASAY-01\\SQLEXPRESS;Initial Catalog=MenuDemo;Integrated Security=T" +
+            "rue;TrustServerCertificate=True")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

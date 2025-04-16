@@ -39,6 +39,7 @@ namespace WinFormsMenuDemo.Controls
 
                 sheet.Cells.Columns.AutoFit();
                 app.Visible = true;
+
             }
             catch (Exception ex)
             {

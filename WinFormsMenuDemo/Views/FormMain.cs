@@ -76,34 +76,6 @@ namespace WinFormsMenuDemo.Views
         // ------------------------------------------------
         private readonly Dictionary<string, Form> _formCache = new();
 
-        private void LoadFormToPanel(Form form)
-        {
-            PanelMain.Controls.Clear();
-            form.TopLevel = false;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.Dock = DockStyle.Fill;
-            PanelMain.Controls.Add(form);
-            form.Show();
-        }
-
-        private void SetDefaultMenuColor(Control? parent = null)
-        {
-            parent ??= this.PanelMenu;
-
-            // ボタンの色を初期化
-            foreach (Control ctrl in parent.Controls)
-            {
-                if (ctrl is Button btn)
-                {
-                    btn.BackColor = Properties.Settings.Default.MenuBackColor;
-                    btn.FlatAppearance.MouseOverBackColor = Properties.Settings.Default.TopBarColor;
-                }
-
-                if (ctrl.HasChildren)
-                    SetDefaultMenuColor(ctrl);
-            }
-        }
-
         private void ShowForm(string key, Type formType)
         {
             if (!_formCache.TryGetValue(key, out var form) || form.IsDisposed)
@@ -112,6 +84,16 @@ namespace WinFormsMenuDemo.Views
                 _formCache[key] = form;
             }
             LoadFormToPanel(form);
+        }
+
+        private void LoadFormToPanel(Form form)
+        {
+            PanelMain.Controls.Clear();
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            PanelMain.Controls.Add(form);
+            form.Show();
         }
 
         private Form CreateFormInstance(Type formType)
@@ -158,6 +140,24 @@ namespace WinFormsMenuDemo.Views
                 throw new InvalidOperationException($"{formType.Name} のインスタンスを生成できません。");
 
             return f;
+        }
+
+        private void SetDefaultMenuColor(Control? parent = null)
+        {
+            parent ??= this.PanelMenu;
+
+            // ボタンの色を初期化
+            foreach (Control ctrl in parent.Controls)
+            {
+                if (ctrl is Button btn)
+                {
+                    btn.BackColor = Properties.Settings.Default.MenuBackColor;
+                    btn.FlatAppearance.MouseOverBackColor = Properties.Settings.Default.TopBarColor;
+                }
+
+                if (ctrl.HasChildren)
+                    SetDefaultMenuColor(ctrl);
+            }
         }
 
         private void Btn受注_Click(object sender, EventArgs e)
@@ -212,10 +212,9 @@ namespace WinFormsMenuDemo.Views
             ShowForm("障害ログ", typeof(Form障害ログ));
         }
 
-        private void Btnログアウト_Click(object sender, EventArgs e)
+        private void Btn終了_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
     }
 }
