@@ -44,7 +44,6 @@ namespace WinFormsMenuDemo.Controls
             {
                 MessageBox.Show("Excel出力エラー: " + ex.Message);
                 ErrorLogger.Log(ex, this);
-                // ← this を渡すだけ
             }
 
             finally
