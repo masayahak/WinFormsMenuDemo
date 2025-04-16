@@ -20,6 +20,8 @@ namespace WinFormsMenuDemo.Common
                 var connectionString = ConfigurationManager.ConnectionStrings["sqlConnectionString"].ConnectionString;
                 var repository = new 障害ログRepository(connectionString);
 
+                string clientInfo = $"{Environment.MachineName} / {Environment.UserName}";
+
                 var model = new 障害ログModel
                 {
                     発生日時 = DateTime.Now,
@@ -27,8 +29,10 @@ namespace WinFormsMenuDemo.Common
                     処理名 = 処理名,
                     メッセージ = ex.Message,
                     スタックトレース = ex.StackTrace ?? "",
+                    クライアント情報 = clientInfo,
                     備考 = 備考 ?? ""
                 };
+
 
                 repository.Add(model);
             }
