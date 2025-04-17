@@ -2,10 +2,11 @@
 using WinFormsMenuDemo.Models;
 using WinFormsMenuDemo.Repositories;
 using WinFormsMenuDemo.Views;
+using WinFormsMenuDemo.Presenters.Common;
 
 namespace WinFormsMenuDemo.Presenters
 {
-    public class 受注Presenter
+    public class 受注Presenter : PresenterBase
     {
         //Fields
         private readonly IForm受注View _view;
@@ -34,20 +35,44 @@ namespace WinFormsMenuDemo.Presenters
             this._view.Show();
         }
 
+        public override void HandleWithErrorLogging(Action action)
+        {
+            try
+            {
+                action();
+            }
+            catch (Exception ex)
+            {
+                _view.IsSuccessful = false;
+                _view.Message = ex.Message;
+                ErrorLogger.Log(ex, (Form)_view);
+            }
+        }
+
         private void LoadAll受注()
         {
-            _受注List = _repository.GetAll();
-            _受注bindingSource.DataSource = _受注List;
+            Action action = () =>
+            {
+                _受注List = _repository.GetAll();
+                _受注bindingSource.DataSource = _受注List;
+            };
+
+            HandleWithErrorLogging(action);
         }
 
         private void Search受注(object? sender, EventArgs e)
         {
-            bool emptyValue = string.IsNullOrWhiteSpace(this._view.SearchValue);
-            if (!emptyValue)
-                _受注List = _repository.GetByValue(this._view.SearchValue);
-            else
-                _受注List = _repository.GetAll();
-            _受注bindingSource.DataSource = _受注List;
+            Action action = () =>
+            {
+                bool emptyValue = string.IsNullOrWhiteSpace(this._view.SearchValue);
+                if (!emptyValue)
+                    _受注List = _repository.GetByValue(this._view.SearchValue);
+                else
+                    _受注List = _repository.GetAll();
+                _受注bindingSource.DataSource = _受注List;
+            };
+
+            HandleWithErrorLogging(action);
         }
 
         private void AddNew受注(object? sender, EventArgs e)
@@ -60,19 +85,24 @@ namespace WinFormsMenuDemo.Presenters
 
         private void LoadSelected受注ToEdit(object? sender, EventArgs e)
         {
-            if (_受注bindingSource.Current is not 受注Model) return;
+            Action action = () =>
+            {
+                if (_受注bindingSource.Current is not 受注Model) return;
 
-            var current = (受注Model)_受注bindingSource.Current;
-            _view.受注Id = current.受注Id.ToString();
-            _view.得意先Id = current.得意先Id.ToString();
-            _view.得意先名 = current.得意先名;
-            _view.受注日 = current.受注日.ToString("yyyy/MM/dd");
-            _view.合計金額 = current.合計金額.ToString();
-            _view.Is売上済み = current.Is売上済み;
-            _view.備考 = current.備考 ?? string.Empty;
-            _view.Version = current.Version;
+                var current = (受注Model)_受注bindingSource.Current;
+                _view.受注Id = current.受注Id.ToString();
+                _view.得意先Id = current.得意先Id.ToString();
+                _view.得意先名 = current.得意先名;
+                _view.受注日 = current.受注日.ToString("yyyy/MM/dd");
+                _view.合計金額 = current.合計金額.ToString();
+                _view.Is売上済み = current.Is売上済み;
+                _view.備考 = current.備考 ?? string.Empty;
+                _view.Version = current.Version;
 
-            _view.IsEdit = true;
+                _view.IsEdit = true;
+            };
+
+            HandleWithErrorLogging(action);
         }
 
         // 型変換チェック
@@ -123,7 +153,7 @@ namespace WinFormsMenuDemo.Presenters
             model.備考 = _view.備考;
             model.Version = _view.Version;
 
-            try
+            Action action = () =>
             {
                 Common.ModelDataValidation.Validate(model);
                 if (_view.IsEdit)
@@ -161,14 +191,9 @@ namespace WinFormsMenuDemo.Presenters
                 {
                     CleanViewFields();
                 }
-            }
-            catch (Exception ex)
-            {
-                _view.IsSuccessful = false;
-                _view.Message = ex.Message;
+            };
 
-                ErrorLogger.Log(ex, (Form)_view);
-            }
+            HandleWithErrorLogging(action);
         }
 
         private void CleanViewFields()
@@ -188,7 +213,7 @@ namespace WinFormsMenuDemo.Presenters
         }
         private void Delete受注(object? sender, EventArgs e)
         {
-            try
+            Action action = () =>
             {
                 if (_受注bindingSource.Current is not 受注Model selected受注) return;
                 var current = (受注Model)_受注bindingSource.Current;
@@ -206,16 +231,10 @@ namespace WinFormsMenuDemo.Presenters
                 }
 
                 LoadAll受注();
-            }
-            catch (Exception ex)
-            {
-                _view.IsSuccessful = false;
-                _view.Message = ex.Message;
+            };
 
-                ErrorLogger.Log(ex, (Form)_view);
-            }
+            HandleWithErrorLogging(action);
 
         }
-
     }
 }

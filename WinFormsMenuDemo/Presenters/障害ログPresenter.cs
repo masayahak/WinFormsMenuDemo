@@ -1,10 +1,12 @@
-﻿using WinFormsMenuDemo.Models;
+﻿using WinFormsMenuDemo.Common;
+using WinFormsMenuDemo.Models;
+using WinFormsMenuDemo.Presenters.Common;
 using WinFormsMenuDemo.Repositories;
 using WinFormsMenuDemo.Views;
 
 namespace WinFormsMenuDemo.Presenters
 {
-    public class 障害ログPresenter
+    public class 障害ログPresenter : PresenterBase
     {
         private readonly IForm障害ログView _view;
         private readonly I障害ログRepository _repository;
@@ -28,31 +30,54 @@ namespace WinFormsMenuDemo.Presenters
             _view.Show();
         }
 
+        public override void HandleWithErrorLogging(Action action)
+        {
+            try
+            {
+                action();
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.Log(ex, (Form)_view);
+            }
+        }
+
         private void Search(object? sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(_view.SearchValue))
+            Action action = () =>
             {
-                _logList = _repository.GetByValue(_view.SearchValue);
-            }
-            else
-            {
-                _logList = _repository.GetAll();
-            }
-            _bindingSource.DataSource = _logList;
+                if (!string.IsNullOrWhiteSpace(_view.SearchValue))
+                {
+                    _logList = _repository.GetByValue(_view.SearchValue);
+                }
+                else
+                {
+                    _logList = _repository.GetAll();
+                }
+                _bindingSource.DataSource = _logList;
+            };
+
+            HandleWithErrorLogging(action);
         }
 
         private void ShowDetail(object? sender, EventArgs e)
         {
-            if (_bindingSource.Current is not 障害ログModel current) return;
+            Action action = () =>
+            {
+                if (_bindingSource.Current is not 障害ログModel current) return;
 
-            _view.Id = current.Id.ToString();
-            _view.発生日時 = current.発生日時.ToString("yyyy/MM/dd HH:mm:ss");
-            _view.画面名 = current.画面名 ?? string.Empty;
-            _view.処理名 = current.処理名 ?? string.Empty;
-            _view.メッセージ = current.メッセージ ?? string.Empty;
-            _view.スタックトレース = current.スタックトレース ?? string.Empty;
-            _view.クライアント情報 = current.クライアント情報 ?? string.Empty;
-            _view.備考 = current.備考 ?? string.Empty;
+                _view.Id = current.Id.ToString();
+                _view.発生日時 = current.発生日時.ToString("yyyy/MM/dd HH:mm:ss");
+                _view.画面名 = current.画面名 ?? string.Empty;
+                _view.処理名 = current.処理名 ?? string.Empty;
+                _view.メッセージ = current.メッセージ ?? string.Empty;
+                _view.スタックトレース = current.スタックトレース ?? string.Empty;
+                _view.クライアント情報 = current.クライアント情報 ?? string.Empty;
+                _view.備考 = current.備考 ?? string.Empty;
+            };
+
+            HandleWithErrorLogging(action);
+
         }
 
         private void CleanViewFields()

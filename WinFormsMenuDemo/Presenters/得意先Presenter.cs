@@ -2,10 +2,11 @@
 using WinFormsMenuDemo.Models;
 using WinFormsMenuDemo.Repositories;
 using WinFormsMenuDemo.Views;
+using WinFormsMenuDemo.Presenters.Common;
 
 namespace WinFormsMenuDemo.Presenters
 {
-    public class 得意先Presenter
+    public class 得意先Presenter : PresenterBase
     {
         //Fields
         private readonly IForm得意先View _view;
@@ -34,14 +35,39 @@ namespace WinFormsMenuDemo.Presenters
             this._view.Show();
         }
 
+        public override void HandleWithErrorLogging(Action action)
+        {
+            try
+            {
+                action();
+            }
+            catch (Exception ex)
+            {
+                _view.IsSuccessful = false;
+                _view.Message = ex.Message;
+                ErrorLogger.Log(ex, (Form)_view);
+            }
+        }
+
         private void LoadAll得意先()
         {
-            _得意先List = _repository.GetAll();
-            _得意先bindingSource.DataSource = _得意先List;
+            Action action = () =>
+            {
+                _得意先List = _repository.GetAll();
+                _得意先bindingSource.DataSource = _得意先List;
+            };
+
+            HandleWithErrorLogging(action);
         }
 
         private void Search得意先(object? sender, EventArgs e)
         {
+            Action action = () =>
+            {
+            };
+
+            HandleWithErrorLogging(action);
+
             bool emptyValue = string.IsNullOrWhiteSpace(this._view.SearchValue);
             if (!emptyValue)
                 _得意先List = _repository.GetByValue(this._view.SearchValue);
@@ -59,19 +85,24 @@ namespace WinFormsMenuDemo.Presenters
 
         private void LoadSelected得意先ToEdit(object? sender, EventArgs e)
         {
-            if (_得意先bindingSource.Current is not 得意先Model) return;
+            Action action = () =>
+            {
+                if (_得意先bindingSource.Current is not 得意先Model) return;
 
-            var current = (得意先Model)_得意先bindingSource.Current;
-            _view.得意先Id = current.得意先Id.ToString();
-            _view.得意先名 = current.得意先名;
-            _view.住所 = current.住所 ?? string.Empty;
-            _view.電話番号 = current.電話番号 ?? string.Empty;
-            _view.メール = current.メール ?? string.Empty;
-            _view.Is削除済み = current.Is削除済み;
-            _view.備考 = current.備考 ?? string.Empty;
-            _view.Version = current.Version;
+                var current = (得意先Model)_得意先bindingSource.Current;
+                _view.得意先Id = current.得意先Id.ToString();
+                _view.得意先名 = current.得意先名;
+                _view.住所 = current.住所 ?? string.Empty;
+                _view.電話番号 = current.電話番号 ?? string.Empty;
+                _view.メール = current.メール ?? string.Empty;
+                _view.Is削除済み = current.Is削除済み;
+                _view.備考 = current.備考 ?? string.Empty;
+                _view.Version = current.Version;
 
-            _view.IsEdit = true;
+                _view.IsEdit = true;
+            };
+
+            HandleWithErrorLogging(action);
         }
 
         // 型変換チェック
@@ -99,7 +130,7 @@ namespace WinFormsMenuDemo.Presenters
             model.備考 = _view.備考;
             model.Version = _view.Version;
 
-            try
+            Action action = () =>
             {
                 Common.ModelDataValidation.Validate(model);
                 if (_view.IsEdit)
@@ -137,14 +168,9 @@ namespace WinFormsMenuDemo.Presenters
                 {
                     CleanViewFields();
                 }
-            }
-            catch (Exception ex)
-            {
-                _view.IsSuccessful = false;
-                _view.Message = ex.Message;
+            };
 
-                ErrorLogger.Log(ex, (Form)_view);
-            }
+            HandleWithErrorLogging(action);
         }
 
         private void CleanViewFields()
@@ -164,7 +190,7 @@ namespace WinFormsMenuDemo.Presenters
         }
         private void Delete得意先(object? sender, EventArgs e)
         {
-            try
+            Action action = () =>
             {
                 if (_得意先bindingSource.Current is not 得意先Model selected得意先) return;
                 var current = (得意先Model)_得意先bindingSource.Current;
@@ -182,16 +208,9 @@ namespace WinFormsMenuDemo.Presenters
                 }
 
                 LoadAll得意先();
-            }
-            catch (Exception ex)
-            {
-                _view.IsSuccessful = false;
-                _view.Message = ex.Message;
+            };
 
-                ErrorLogger.Log(ex, (Form)_view);
-            }
-
+            HandleWithErrorLogging(action);
         }
-
     }
 }
