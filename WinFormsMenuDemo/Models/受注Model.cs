@@ -21,7 +21,7 @@ namespace WinFormsMenuDemo.Models
 
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "合計金額は0以上で入力してください。")]
-        public int 合計金額 { get; set; }
+        public decimal 合計金額 { get; set; }
 
         [Required]
         [DisplayName("売上済み")]
