@@ -24,8 +24,9 @@ namespace WinFormsMenuDemo.Presenters
             _view.CancelEvent += Cancel;
 
             _view.Set障害ログListBindingSource(_bindingSource);
-            _logList = repository.GetAll();
-            _bindingSource.DataSource = _logList;
+
+            _logList = [];
+            LoadAll障害ログ();
 
             _view.Show();
         }
@@ -42,18 +43,36 @@ namespace WinFormsMenuDemo.Presenters
             }
         }
 
+        private void LoadAll障害ログ()
+        {
+            Action action = () =>
+            {
+                var result = _repository.GetAll();
+                if (result.Is上限超過)
+                {
+                    _view.Message = $"表示件数が上限を超えました。\n対象「{result.実際の件数}」件中の上位{result.表示上限}件を表示してます。";
+                }
+                _logList = result.List;
+                _bindingSource.DataSource = _logList;
+            };
+
+            HandleWithErrorLogging(action);
+        }
+
         private void Search(object? sender, EventArgs e)
         {
             Action action = () =>
             {
+                障害ログ一覧結果 result = new();
                 if (!string.IsNullOrWhiteSpace(_view.SearchValue))
                 {
-                    _logList = _repository.GetByValue(_view.SearchValue);
+                    result = _repository.GetByValue(_view.SearchValue);
                 }
                 else
                 {
-                    _logList = _repository.GetAll();
+                    result = _repository.GetAll();
                 }
+                _logList = result.List;
                 _bindingSource.DataSource = _logList;
             };
 

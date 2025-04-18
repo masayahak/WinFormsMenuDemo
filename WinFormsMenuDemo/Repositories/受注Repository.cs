@@ -174,7 +174,7 @@ namespace WinFormsMenuDemo.Repositories
                 command.Connection = connection;
 
 
-                command.CommandText = $@"select TOP {結果.表示上限 + 1}* from T受注 
+                command.CommandText = $@"select TOP {結果.表示上限 + 1} * from T受注 
                                         where 受注Id=@id or 得意先名 like @name+'%'
                                         order by 受注Id desc;";
 

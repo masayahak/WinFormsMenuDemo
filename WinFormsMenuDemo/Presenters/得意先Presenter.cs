@@ -29,8 +29,8 @@ namespace WinFormsMenuDemo.Presenters
 
             this._view.Set得意先ListBindingSource(_得意先bindingSource);
 
-            _得意先List = repository.GetAll();
-            _得意先bindingSource.DataSource = _得意先List;
+            _得意先List = [];
+            LoadAll得意先();
 
             this._view.Show();
         }
@@ -53,7 +53,12 @@ namespace WinFormsMenuDemo.Presenters
         {
             Action action = () =>
             {
-                _得意先List = _repository.GetAll();
+                var result = _repository.GetAll();
+                if (result.Is上限超過)
+                {
+                    _view.Message = $"表示件数が上限を超えました。\n対象「{result.実際の件数}」件中の上位{result.表示上限}件を表示してます。";
+                }
+                _得意先List = result.List;
                 _得意先bindingSource.DataSource = _得意先List;
             };
 
@@ -64,16 +69,23 @@ namespace WinFormsMenuDemo.Presenters
         {
             Action action = () =>
             {
+                得意先一覧結果 result = new();
+                bool emptyValue = string.IsNullOrWhiteSpace(this._view.SearchValue);
+                if (!emptyValue)
+                    result = _repository.GetByValue(this._view.SearchValue);
+                else
+                    result = _repository.GetAll();
+
+                if (result.Is上限超過)
+                {
+                    _view.Message = $"表示件数が上限を超えました。\n対象「{result.実際の件数}」件中の上位{result.表示上限}件を表示してます。";
+                }
+
+                _得意先List = result.List;
+                _得意先bindingSource.DataSource = _得意先List;
             };
 
             HandleWithErrorLogging(action);
-
-            bool emptyValue = string.IsNullOrWhiteSpace(this._view.SearchValue);
-            if (!emptyValue)
-                _得意先List = _repository.GetByValue(this._view.SearchValue);
-            else
-                _得意先List = _repository.GetAll();
-            _得意先bindingSource.DataSource = _得意先List;
         }
 
         private void AddNew得意先(object? sender, EventArgs e)

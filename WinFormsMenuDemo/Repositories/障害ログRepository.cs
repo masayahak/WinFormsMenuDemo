@@ -1,14 +1,23 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Office.Interop.Excel;
 using System.Data;
 using WinFormsMenuDemo.Models;
 
 namespace WinFormsMenuDemo.Repositories
 {
+    public class 障害ログ一覧結果
+    {
+        public IEnumerable<障害ログModel> List { get; set; } = [];
+        public int 実際の件数 { get; set; }
+        public int 表示上限 => Properties.Settings.Default.MaxSelectCount;
+        public bool Is上限超過 => 実際の件数 > 表示上限;
+    }
+
     public interface I障害ログRepository
     {
         bool Add(障害ログModel model);
-        IEnumerable<障害ログModel> GetAll();
-        IEnumerable<障害ログModel> GetByValue(string searchValue);
+        障害ログ一覧結果 GetAll();
+        障害ログ一覧結果 GetByValue(string searchValue);
     }
 
     public class 障害ログRepository : BaseRepository, I障害ログRepository
@@ -41,12 +50,13 @@ namespace WinFormsMenuDemo.Repositories
             return command.ExecuteNonQuery() > 0;
         }
 
-        public IEnumerable<障害ログModel> GetAll()
+        public 障害ログ一覧結果 GetAll()
         {
+            var 結果 = new 障害ログ一覧結果();
             var list = new List<障害ログModel>();
 
             using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand("select * from T障害ログ order by 発生日時 desc", connection);
+            using var command = new SqlCommand("select TOP {結果.表示上限 + 1} * from T障害ログ order by 発生日時 desc", connection);
             connection.Open();
 
             using var reader = command.ExecuteReader();
@@ -67,20 +77,35 @@ namespace WinFormsMenuDemo.Repositories
                 list.Add(model);
             }
 
-            return list;
+            結果.実際の件数 = list.Count;
+
+            // 件数判定
+            if (list.Count > 結果.表示上限)
+            {
+                // 上限超過確定 → 実件数取得
+                using (var countCommand = new SqlCommand("SELECT COUNT(*) FROM T障害ログ", connection))
+                {
+                    結果.実際の件数 = (int)countCommand.ExecuteScalar()!;
+                }
+
+                list = list.Take(結果.表示上限).ToList();
+            }
+
+            結果.List = list;
+            return 結果;
         }
 
-        public IEnumerable<障害ログModel> GetByValue(string searchValue)
+        public 障害ログ一覧結果 GetByValue(string searchValue)
         {
+            var 結果 = new 障害ログ一覧結果();
             var list = new List<障害ログModel>();
 
             var parts = searchValue.Split(',', StringSplitOptions.TrimEntries);
-            if (parts.Length == 0) return list;
+            if (parts.Length == 0) return 結果;
 
-            if (!DateTime.TryParse(parts[0], out var from)) return list;
+            if (!DateTime.TryParse(parts[0], out var from)) return 結果;
 
-            DateTime to;
-            if (parts.Length < 2 || !DateTime.TryParse(parts[1], out to))
+            if (parts.Length < 2 || !DateTime.TryParse(parts[1], out DateTime to))
             {
                 to = from;
             }
@@ -93,8 +118,8 @@ namespace WinFormsMenuDemo.Repositories
             connection.Open();
 
             command.Connection = connection;
-            command.CommandText = @"
-                select * from T障害ログ
+            command.CommandText = $@"
+                select TOP {結果.表示上限 + 1} * from T障害ログ
                 where 発生日時 >= @from and 発生日時 <= @to
                 order by 発生日時 desc;";
 
@@ -119,7 +144,28 @@ namespace WinFormsMenuDemo.Repositories
                 list.Add(model);
             }
 
-            return list;
+            結果.実際の件数 = list.Count;
+
+            // 件数判定
+            if (list.Count > 結果.表示上限)
+            {
+                // 上限超過確定 → 実件数取得
+                using (var countCommand = new SqlCommand(
+                    $@"SELECT COUNT(*) FROM T障害ログ 
+                        where 発生日時 >= @from and 発生日時 <= @to 
+                        order by 発生日時 desc;", connection))
+                {
+                    command.Parameters.Add("@from", SqlDbType.DateTime).Value = from;
+                    command.Parameters.Add("@to", SqlDbType.DateTime).Value = to;
+
+                    結果.実際の件数 = (int)countCommand.ExecuteScalar()!;
+                }
+
+                list = list.Take(結果.表示上限).ToList();
+            }
+
+            結果.List = list;
+            return 結果;
         }
     }
 }

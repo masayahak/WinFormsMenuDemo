@@ -69,25 +69,19 @@ namespace WinFormsMenuDemo.Presenters
         {
             Action action = () =>
             {
+                受注一覧結果 result = new();
                 bool emptyValue = string.IsNullOrWhiteSpace(this._view.SearchValue);
                 if (!emptyValue)
-                {
-                    var result = _repository.GetByValue(this._view.SearchValue);
-                    if (result.Is上限超過)
-                    {
-                        _view.Message = $"表示件数が上限を超えました。\n対象「{result.実際の件数}」件中の上位{result.表示上限}件を表示してます。";
-                    }
-                    _受注List = result.List;
-                }
+                    result = _repository.GetByValue(this._view.SearchValue);
                 else
+                    result = _repository.GetAll();
+
+                if (result.Is上限超過)
                 {
-                    var result = _repository.GetAll();
-                    if (result.Is上限超過)
-                    {
-                        _view.Message = $"表示件数が上限を超えました。\n対象「{result.実際の件数}」件中の上位{result.表示上限}件を表示してます。";
-                    }
-                    _受注List = result.List;
+                    _view.Message = $"表示件数が上限を超えました。\n対象「{result.実際の件数}」件中の上位{result.表示上限}件を表示してます。";
                 }
+
+                _受注List = result.List;
                 _受注bindingSource.DataSource = _受注List;
             };
 
@@ -234,9 +228,7 @@ namespace WinFormsMenuDemo.Presenters
         {
             Action action = () =>
             {
-                if (_受注bindingSource.Current is not 受注Model selected受注) return;
-                var current = (受注Model)_受注bindingSource.Current;
-
+                if (_受注bindingSource.Current is not 受注Model current) return;
                 bool ret = _repository.Delete(current);
                 if (ret)
                 {

@@ -1,4 +1,5 @@
-﻿using WinFormsMenuDemo.Controls;
+﻿using System.Windows.Forms;
+using WinFormsMenuDemo.Controls;
 
 namespace WinFormsMenuDemo.Views
 {
@@ -16,6 +17,7 @@ namespace WinFormsMenuDemo.Views
 
         // 検索・状態
         string SearchValue { get; set; }              // 例: "2024/01/01,2024/01/10"
+        string Message { get; set; }
 
         // イベント
         event EventHandler SearchEvent;
@@ -29,6 +31,8 @@ namespace WinFormsMenuDemo.Views
 
     public partial class Form障害ログ : Form, IForm障害ログView, Iテーマ適用可能
     {
+        private string _message = string.Empty;
+
         public Form障害ログ()
         {
             InitializeComponent();
@@ -130,6 +134,38 @@ namespace WinFormsMenuDemo.Views
         {
             get => TextBox検索.Text;
             set => TextBox検索.Text = value;
+        }
+
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                ShowMessageToUser(value);
+            }
+        }
+
+        // メッセージ表示
+        private void ShowMessageToUser(string message)
+        {
+            this._message = message;
+
+            // トースト表示
+            var toast = new ToastPanel();
+            toast.ShowToast(message, this);
+
+            // 親フォームのボトムバーにも表示
+            var parentForm = this.Parent;
+            while (parentForm != null && parentForm is not FormMain)
+            {
+                parentForm = parentForm.Parent;
+            }
+
+            if (parentForm is FormMain main)
+            {
+                main.Message = message;
+            }
         }
 
         // メソッド
