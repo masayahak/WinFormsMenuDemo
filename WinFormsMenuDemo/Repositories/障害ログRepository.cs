@@ -55,44 +55,48 @@ namespace WinFormsMenuDemo.Repositories
             var 結果 = new 障害ログ一覧結果();
             var list = new List<障害ログModel>();
 
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand("select TOP {結果.表示上限 + 1} * from T障害ログ order by 発生日時 desc", connection);
-            connection.Open();
-
-            using var reader = command.ExecuteReader();
-            while (reader.Read())
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
             {
-                var model = new 障害ログModel
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = $"select TOP {結果.表示上限 + 1} * from T障害ログ order by 発生日時 desc;";
+                using (var reader = command.ExecuteReader())
                 {
-                    Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                    発生日時 = reader.GetDateTime(reader.GetOrdinal("発生日時")),
-                    メッセージ = reader.GetString(reader.GetOrdinal("メッセージ")),
-                    スタックトレース = reader.IsDBNull(reader.GetOrdinal("スタックトレース")) ? null : reader.GetString(reader.GetOrdinal("スタックトレース")),
-                    画面名 = reader.IsDBNull(reader.GetOrdinal("画面名")) ? null : reader.GetString(reader.GetOrdinal("画面名")),
-                    処理名 = reader.IsDBNull(reader.GetOrdinal("処理名")) ? null : reader.GetString(reader.GetOrdinal("処理名")),
-                    クライアント情報 = reader.IsDBNull(reader.GetOrdinal("クライアント情報")) ? null : reader.GetString(reader.GetOrdinal("クライアント情報")),
-                    備考 = reader.IsDBNull(reader.GetOrdinal("備考")) ? null : reader.GetString(reader.GetOrdinal("備考")),
-                };
+                    while (reader.Read())
+                    {
+                        var model = new 障害ログModel();
+                        model.Id = reader.GetInt32(reader.GetOrdinal("Id"));
+                        model.発生日時 = reader.GetDateTime(reader.GetOrdinal("発生日時"));
+                        model.メッセージ = reader.GetString(reader.GetOrdinal("メッセージ"));
+                        model.スタックトレース = reader.IsDBNull(reader.GetOrdinal("スタックトレース")) ? null : reader.GetString(reader.GetOrdinal("スタックトレース"));
+                        model.画面名 = reader.IsDBNull(reader.GetOrdinal("画面名")) ? null : reader.GetString(reader.GetOrdinal("画面名"));
+                        model.処理名 = reader.IsDBNull(reader.GetOrdinal("処理名")) ? null : reader.GetString(reader.GetOrdinal("処理名"));
+                        model.クライアント情報 = reader.IsDBNull(reader.GetOrdinal("クライアント情報")) ? null : reader.GetString(reader.GetOrdinal("クライアント情報"));
+                        model.備考 = reader.IsDBNull(reader.GetOrdinal("備考")) ? null : reader.GetString(reader.GetOrdinal("備考"));
 
-                list.Add(model);
-            }
-
-            結果.実際の件数 = list.Count;
-
-            // 件数判定
-            if (list.Count > 結果.表示上限)
-            {
-                // 上限超過確定 → 実件数取得
-                using (var countCommand = new SqlCommand("SELECT COUNT(*) FROM T障害ログ", connection))
-                {
-                    結果.実際の件数 = (int)countCommand.ExecuteScalar()!;
+                        list.Add(model);
+                    }
                 }
 
-                list = list.Take(結果.表示上限).ToList();
+                結果.実際の件数 = list.Count;
+
+                // 件数判定
+                if (list.Count > 結果.表示上限)
+                {
+                    // 上限超過確定 → 実件数取得
+                    using (var countCommand = new SqlCommand("SELECT COUNT(*) FROM T障害ログ", connection))
+                    {
+                        結果.実際の件数 = (int)countCommand.ExecuteScalar()!;
+                    }
+
+                    list = list.Take(結果.表示上限).ToList();
+                }
             }
 
             結果.List = list;
             return 結果;
+
         }
 
         public 障害ログ一覧結果 GetByValue(string searchValue)
@@ -113,55 +117,55 @@ namespace WinFormsMenuDemo.Repositories
             if (parts[0].Length <= 10) from = from.Date;
             if (parts.Length < 2 || parts[1].Length <= 10) to = to.Date.AddDays(1).AddSeconds(-1);
 
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand();
-            connection.Open();
-
-            command.Connection = connection;
-            command.CommandText = $@"
-                select TOP {結果.表示上限 + 1} * from T障害ログ
-                where 発生日時 >= @from and 発生日時 <= @to
-                order by 発生日時 desc;";
-
-            command.Parameters.Add("@from", SqlDbType.DateTime).Value = from;
-            command.Parameters.Add("@to", SqlDbType.DateTime).Value = to;
-
-            using var reader = command.ExecuteReader();
-            while (reader.Read())
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
             {
-                var model = new 障害ログModel
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = $@"
+                            select TOP {結果.表示上限 + 1} * from T障害ログ
+                            where 発生日時 >= @from and 発生日時 <= @to
+                            order by 発生日時 desc;";
+
+                command.Parameters.Add("@from", SqlDbType.DateTime).Value = from;
+                command.Parameters.Add("@to", SqlDbType.DateTime).Value = to;
+
+                using (var reader = command.ExecuteReader())
                 {
-                    Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                    発生日時 = reader.GetDateTime(reader.GetOrdinal("発生日時")),
-                    メッセージ = reader.GetString(reader.GetOrdinal("メッセージ")),
-                    スタックトレース = reader.IsDBNull(reader.GetOrdinal("スタックトレース")) ? null : reader.GetString(reader.GetOrdinal("スタックトレース")),
-                    画面名 = reader.IsDBNull(reader.GetOrdinal("画面名")) ? null : reader.GetString(reader.GetOrdinal("画面名")),
-                    処理名 = reader.IsDBNull(reader.GetOrdinal("処理名")) ? null : reader.GetString(reader.GetOrdinal("処理名")),
-                    クライアント情報 = reader.IsDBNull(reader.GetOrdinal("クライアント情報")) ? null : reader.GetString(reader.GetOrdinal("クライアント情報")),
-                    備考 = reader.IsDBNull(reader.GetOrdinal("備考")) ? null : reader.GetString(reader.GetOrdinal("備考")),
-                };
+                    while (reader.Read())
+                    {
+                        var model = new 障害ログModel();
+                        model.Id = reader.GetInt32(reader.GetOrdinal("Id"));
+                        model.発生日時 = reader.GetDateTime(reader.GetOrdinal("発生日時"));
+                        model.メッセージ = reader.GetString(reader.GetOrdinal("メッセージ"));
+                        model.スタックトレース = reader.IsDBNull(reader.GetOrdinal("スタックトレース")) ? null : reader.GetString(reader.GetOrdinal("スタックトレース"));
+                        model.画面名 = reader.IsDBNull(reader.GetOrdinal("画面名")) ? null : reader.GetString(reader.GetOrdinal("画面名"));
+                        model.処理名 = reader.IsDBNull(reader.GetOrdinal("処理名")) ? null : reader.GetString(reader.GetOrdinal("処理名"));
+                        model.クライアント情報 = reader.IsDBNull(reader.GetOrdinal("クライアント情報")) ? null : reader.GetString(reader.GetOrdinal("クライアント情報"));
+                        model.備考 = reader.IsDBNull(reader.GetOrdinal("備考")) ? null : reader.GetString(reader.GetOrdinal("備考"));
 
-                list.Add(model);
-            }
-
-            結果.実際の件数 = list.Count;
-
-            // 件数判定
-            if (list.Count > 結果.表示上限)
-            {
-                // 上限超過確定 → 実件数取得
-                using (var countCommand = new SqlCommand(
-                    $@"SELECT COUNT(*) FROM T障害ログ 
-                        where 発生日時 >= @from and 発生日時 <= @to 
-                        order by 発生日時 desc;", connection))
-                {
-                    command.Parameters.Add("@from", SqlDbType.DateTime).Value = from;
-                    command.Parameters.Add("@to", SqlDbType.DateTime).Value = to;
-
-                    結果.実際の件数 = (int)countCommand.ExecuteScalar()!;
+                        list.Add(model);
+                    }
                 }
 
-                list = list.Take(結果.表示上限).ToList();
+                結果.実際の件数 = list.Count;
+
+                // 件数判定
+                if (list.Count > 結果.表示上限)
+                {
+                    // 上限超過確定 → 実件数取得
+                    using (var countCommand = new SqlCommand(
+                        @"SELECT COUNT(*) FROM T障害ログ
+                          where 発生日時 >= @from and 発生日時 <= @to", connection))
+                    {
+                        command.Parameters.Add("@from", SqlDbType.DateTime).Value = from;
+                        command.Parameters.Add("@to", SqlDbType.DateTime).Value = to;
+
+                        結果.実際の件数 = (int)countCommand.ExecuteScalar()!;
+                    }
+
+                    list = list.Take(結果.表示上限).ToList();
+                }
             }
 
             結果.List = list;

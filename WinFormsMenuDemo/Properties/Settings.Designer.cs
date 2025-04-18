@@ -132,7 +132,7 @@ namespace WinFormsMenuDemo.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
         public int MaxSelectCount {
             get {
                 return ((int)(this["MaxSelectCount"]));

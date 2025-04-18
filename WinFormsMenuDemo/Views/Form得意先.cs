@@ -195,7 +195,33 @@ namespace WinFormsMenuDemo.Views
         public string Message
         {
             get { return _message; }
-            set { _message = value; }
+            set
+            {
+                _message = value;
+                ShowMessageToUser(value);
+            }
+        }
+
+        // メッセージ表示
+        private void ShowMessageToUser(string message)
+        {
+            this._message = message;
+
+            // トースト表示
+            var toast = new ToastPanel();
+            toast.ShowToast(message, this);
+
+            // 親フォームのボトムバーにも表示
+            var parentForm = this.Parent;
+            while (parentForm != null && parentForm is not FormMain)
+            {
+                parentForm = parentForm.Parent;
+            }
+
+            if (parentForm is FormMain main)
+            {
+                main.Message = message;
+            }
         }
 
         // メソッド

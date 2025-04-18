@@ -35,7 +35,7 @@
       <Value Profile="(Default)">DarkOrange</Value>
     </Setting>
     <Setting Name="MaxSelectCount" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">100</Value>
+      <Value Profile="(Default)">10000</Value>
     </Setting>
   </Settings>
 </SettingsFile>
