@@ -29,8 +29,8 @@ namespace WinFormsMenuDemo.Presenters
 
             this._view.Set受注ListBindingSource(_受注bindingSource);
 
-            _受注List = repository.GetAll();
-            _受注bindingSource.DataSource = _受注List;
+            _受注List = [];
+            LoadAll受注();
 
             this._view.Show();
         }
@@ -53,7 +53,12 @@ namespace WinFormsMenuDemo.Presenters
         {
             Action action = () =>
             {
-                _受注List = _repository.GetAll();
+                var result = _repository.GetAll();
+                if (result.Is上限超過)
+                {
+                    _view.Message = $"表示件数が上限を超えました。\n対象「{result.実際の件数}」件中の上位{result.表示上限}件を表示してます。";
+                }
+                _受注List = result.List;
                 _受注bindingSource.DataSource = _受注List;
             };
 
@@ -66,9 +71,23 @@ namespace WinFormsMenuDemo.Presenters
             {
                 bool emptyValue = string.IsNullOrWhiteSpace(this._view.SearchValue);
                 if (!emptyValue)
-                    _受注List = _repository.GetByValue(this._view.SearchValue);
+                {
+                    var result = _repository.GetByValue(this._view.SearchValue);
+                    if (result.Is上限超過)
+                    {
+                        _view.Message = $"表示件数が上限を超えました。\n対象「{result.実際の件数}」件中の上位{result.表示上限}件を表示してます。";
+                    }
+                    _受注List = result.List;
+                }
                 else
-                    _受注List = _repository.GetAll();
+                {
+                    var result = _repository.GetAll();
+                    if (result.Is上限超過)
+                    {
+                        _view.Message = $"表示件数が上限を超えました。\n対象「{result.実際の件数}」件中の上位{result.表示上限}件を表示してます。";
+                    }
+                    _受注List = result.List;
+                }
                 _受注bindingSource.DataSource = _受注List;
             };
 

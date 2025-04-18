@@ -124,7 +124,11 @@ namespace WinFormsMenuDemo.Views
         public string Message
         {
             get { return _message; }
-            set { _message = value; }
+            set
+            {
+                _message = value;
+                ShowMessageToUser(value);
+            }
         }
 
         // -------------------------------------------------
@@ -140,15 +144,18 @@ namespace WinFormsMenuDemo.Views
         private void AssociateAndRaiseViewEvents()
         {
             // 検索
-            this.Btn検索.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
+            this.Btn検索.Click += delegate 
+            { 
+                SearchEvent?.Invoke(this, EventArgs.Empty);
+            };
             this.TextBox検索.KeyDown += (s, e) =>
-                        {
-                            if (e.KeyCode == Keys.Enter)
-                            {
-                                SearchEvent?.Invoke(this, EventArgs.Empty);
-                                e.SuppressKeyPress = true; // Enterキーの音を消す
-                            }
-                        };
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    SearchEvent?.Invoke(this, EventArgs.Empty);
+                    e.SuppressKeyPress = true; // Enterキーの音を消す
+                }
+            };
 
             // 登録系 -----------------------------------------
             // 追加
@@ -177,7 +184,6 @@ namespace WinFormsMenuDemo.Views
                     this.TabControl.TabPages.Add(TabPage受注一覧);
                     this.TabControl.TabPages.Remove(TabPage受注登録);
                 }
-                ShowMessageToUser(_message);
             };
             this.Btnキャンセル.Click += delegate
             {
@@ -192,7 +198,6 @@ namespace WinFormsMenuDemo.Views
                 if (result == DialogResult.Yes)
                 {
                     DeleteEvent?.Invoke(this, EventArgs.Empty);
-                    ShowMessageToUser(_message);
                     this.TabControl.TabPages.Add(TabPage受注一覧);
                     this.TabControl.TabPages.Remove(TabPage受注登録);
                 }
@@ -333,14 +338,6 @@ namespace WinFormsMenuDemo.Views
                 Visible = false
             });
 
-        }
-
-        // -------------------------------------------------
-        // メソッド
-        // -------------------------------------------------
-        private void Button得意先検索_Click(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -4,13 +4,21 @@ using WinFormsMenuDemo.Models;
 
 namespace WinFormsMenuDemo.Repositories
 {
+    public class 受注一覧結果
+    {
+        public IEnumerable<受注Model> List { get; set; } = [];
+        public int 実際の件数 { get; set; }
+        public int 表示上限 => Properties.Settings.Default.MaxSelectCount;
+        public bool Is上限超過 => 実際の件数 > 表示上限;
+    }
+
     public interface I受注Repository
     {
         bool Add(受注Model model);
         bool Edit(受注Model model);
         bool Delete(受注Model model);
-        IEnumerable<受注Model> GetAll();
-        IEnumerable<受注Model> GetByValue(string searchValue);
+        受注一覧結果 GetAll();
+        受注一覧結果 GetByValue(string searchValue);
     }
 
     public class 受注Repository : BaseRepository, I受注Repository
@@ -106,16 +114,17 @@ namespace WinFormsMenuDemo.Repositories
             return true;
         }
 
-        public IEnumerable<受注Model> GetAll()
+        public 受注一覧結果 GetAll()
         {
-            var 受注List = new List<受注Model>();
+            var 結果 = new 受注一覧結果();
+            var list = new List<受注Model>();
 
             using (var connection = new SqlConnection(connectionString))
             using (var command = new SqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select * from T受注 order by 受注Id desc;";
+                command.CommandText = $"select TOP {結果.表示上限 + 1} * from T受注 order by 受注Id desc;";
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -130,16 +139,33 @@ namespace WinFormsMenuDemo.Repositories
                         model.備考 = reader.IsDBNull(reader.GetOrdinal("備考")) ? null : reader.GetString(reader.GetOrdinal("備考"));
                         model.Version = reader.GetInt32(reader.GetOrdinal("Version"));
 
-                        受注List.Add(model);
+                        list.Add(model);
                     }
                 }
+
+                結果.実際の件数 = list.Count;
+
+                // 件数判定
+                if (list.Count > 結果.表示上限)
+                {
+                    // 上限超過確定 → 実件数取得
+                    using (var countCommand = new SqlCommand("SELECT COUNT(*) FROM T受注", connection))
+                    {
+                        結果.実際の件数 = (int)countCommand.ExecuteScalar()!;
+                    }
+
+                    list = list.Take(結果.表示上限).ToList();
+                }
             }
-            return 受注List;
+
+            結果.List = list;
+            return 結果;
         }
 
-        public IEnumerable<受注Model> GetByValue(string searchValue)
+        public 受注一覧結果 GetByValue(string searchValue)
         {
-            var 受注List = new List<受注Model>();
+            var 結果 = new 受注一覧結果();
+            var list = new List<受注Model>();
 
             using (var connection = new SqlConnection(connectionString))
             using (var command = new SqlCommand())
@@ -148,7 +174,7 @@ namespace WinFormsMenuDemo.Repositories
                 command.Connection = connection;
 
 
-                command.CommandText = @"select * from T受注 
+                command.CommandText = $@"select TOP {結果.表示上限 + 1}* from T受注 
                                         where 受注Id=@id or 得意先名 like @name+'%'
                                         order by 受注Id desc;";
 
@@ -171,11 +197,31 @@ namespace WinFormsMenuDemo.Repositories
                         model.備考 = reader.IsDBNull(reader.GetOrdinal("備考")) ? null : reader.GetString(reader.GetOrdinal("備考"));
                         model.Version = reader.GetInt32(reader.GetOrdinal("Version"));
 
-                        受注List.Add(model);
+                        list.Add(model);
                     }
                 }
+
+                結果.実際の件数 = list.Count;
+
+                // 件数判定
+                if (list.Count > 結果.表示上限)
+                {
+                    // 上限超過確定 → 実件数取得
+                    using (var countCommand = new SqlCommand(
+                        "SELECT COUNT(*) FROM T受注 WHERE 受注Id = @id OR 得意先名 LIKE @name + '%'", connection))
+                    {
+                        countCommand.Parameters.Add("@id", SqlDbType.Int).Value = 受注Id;
+                        countCommand.Parameters.Add("@name", SqlDbType.NVarChar).Value = 得意先名;
+
+                        結果.実際の件数 = (int)countCommand.ExecuteScalar()!;
+                    }
+
+                    list = list.Take(結果.表示上限).ToList();
+                }
             }
-            return 受注List;
+
+            結果.List = list;
+            return 結果;
         }
     }
 }
